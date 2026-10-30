@@ -25,11 +25,12 @@ flowchart LR
 
 | Layer | Technology |
 |---|---|
-| Frontend | |
-| Backend | |
-| Database | |
-| Testing | |
+| Frontend | React (Vite) |
+| Backend | Node.js, Express, JWT authentication |
+| Database | SQLite |
+| Testing | Vitest, Jest + Supertest, Playwright |
 | CI | GitHub Actions |
+| AI | Gemini API, accessed through a single backend module; mock mode for tests and CI |
 
 ---
 
@@ -117,4 +118,5 @@ sequenceDiagram
 
 | Date | Change | By |
 |---|---|---|
-| | First version | |
+| 2026-10-30 | First version | |
+| 2026-10-30 | AI provider decided: Gemini API (WEB-24) | Sude Naz Metli |
