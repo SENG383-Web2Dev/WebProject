@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment variables (API keys, JWT secret) - never commit these
+.env
+.env.*
+!.env.example
+
+# SQLite database files (recreated by the seed script)
+*.sqlite
+*.sqlite3
+*.db
+
+# Build and test output
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+
+# Logs and OS / editor files
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
