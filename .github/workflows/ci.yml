@@ -1,33 +1,76 @@
 name: CI Pipeline
 
-# Bu pipeline ne zaman çalışsın? (main dalına kod gönderildiğinde veya Pull Request açıldığında)
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-# Manuel olarak da tetikleyebilmek için:
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  client:
+    name: Client (Lint, Test, Build)
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
 
     steps:
-      # 1. Adım: Depodaki kodları sanal sunucuya indirir
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Adım: Temel proje kontrolü ve derleme (Build)
-      - name: Run Build Check
-        run: |
-          echo "Proje dosyalari kontrol ediliyor..."
-          ls -la
-          echo "Build islemi basariyla tamamlandi!"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
 
-      # 3. Adım: Otomatik testlerin çalıştırılması (Test)
-      - name: Run Automated Tests
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Build client
+        run: npm run build
+
+  server:
+    name: Server (Tests)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check if server exists
+        id: server_check
         run: |
-          echo "Testler calistiriliyor..."
-          echo "Tum testler basariyla gecti!"
+          if [ -f "package.json" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "server/package.json not found, skipping server tests."
+          fi
+
+      - name: Set up Node.js
+        if: steps.server_check.outputs.exists == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+
+      - name: Install dependencies
+        if: steps.server_check.outputs.exists == 'true'
+        run: npm ci
+
+      - name: Run server tests
+        if: steps.server_check.outputs.exists == 'true'
+        run: npm test
