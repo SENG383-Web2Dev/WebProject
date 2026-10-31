@@ -19,7 +19,7 @@ Node.js + Express backend with SQLite.
    npm run dev
    ```
 
-3. Run automated tests:
+3. Run automated tests (Jest + Supertest):
    ```bash
    npm test
    ```
@@ -34,3 +34,8 @@ Node.js + Express backend with SQLite.
   ```bash
   npm run seed
   ```
+
+4. Run test coverage:
+   ```bash
+   npm run test:coverage
+   ```
