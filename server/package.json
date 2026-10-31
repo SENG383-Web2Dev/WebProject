@@ -7,7 +7,8 @@
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
     "seed": "node src/seed.js",
-    "test": "node --test tests/**/*.test.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -15,6 +16,7 @@
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "jest": "^30.5.2",
     "supertest": "^7.0.0"
   }
 }
