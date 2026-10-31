@@ -22,6 +22,7 @@
 **Project in one sentence:** A web-based decision support platform that brings parents, specialists and the child together around a shared schedule, task list and observation records, with role-based AI summaries.  
 **Jira project key:** WEB  
 **Jira board link:** https://student-team-kriaqp7j.atlassian.net/jira/software/projects/WEB/boards/4  
+**GitHub repository:** https://github.com/SENG383-Web2Dev/WebProject  
 
 ### Team and Roles
 
