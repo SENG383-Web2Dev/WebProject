@@ -137,7 +137,7 @@ Priority: **Must** (required for v1.0) / **Should** (planned) / **Could** (if ti
 
 ## 5. Use Case Diagram
 
-![Use case diagram](img/use-case-diagram.png)
+![Use case diagram](img/use-case-diagram.drawio.png)
 
 The editable source of the diagram is `docs/img/use-case-diagram.drawio` (open it with draw.io / diagrams.net).
 
