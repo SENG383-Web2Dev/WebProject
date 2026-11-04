@@ -2,7 +2,7 @@
 
 **Team name:** Web2Dev  
 **Version:** ☒ First version (Week 6) ☐ Final (Week 10)  
-**Last updated:** 2026-11-03
+**Last updated:** 2026-11-04
 
 ---
 
@@ -55,7 +55,7 @@ Priority: **Must** (required for v1.0) / **Should** (planned) / **Could** (if ti
 | FR-M3-01 | The system shall allow the parent and linked specialists to add an event to the child's schedule with a title, date, start time and end time. | Must |
 | FR-M3-02 | The system shall list the child's events for a selected week in a weekly view. | Must |
 | FR-M3-03 | The system shall show the child their own weekly schedule. | Must |
-| FR-M3-04 | The system shall reject an event whose end time is not after its start time. | Should |
+| FR-M3-04 | The system shall reject an event whose end time is not after its start time. | Must |
 | FR-M3-05 | The system shall allow the creator of an event to edit or delete it. | Should |
 
 ### M4 – Tasks
@@ -65,8 +65,8 @@ Priority: **Must** (required for v1.0) / **Should** (planned) / **Could** (if ti
 | FR-M4-01 | The system shall allow the parent and linked specialists to assign a task to the child with a title, description, development area and due date. | Must |
 | FR-M4-02 | The system shall show the child only their own tasks. | Must |
 | FR-M4-03 | The system shall allow the child to mark a task as done. | Must |
-| FR-M4-04 | The system shall show the assigner the status (pending or done) of each task they assigned. | Must |
-| FR-M4-05 | The system shall reject a task without a title or due date. | Should |
+| FR-M4-04 | The system shall show the status (pending or done) of each task to the user who assigned it and to the parent, so that the parent sees the status of all of the child's tasks. | Must |
+| FR-M4-05 | The system shall reject a task without a title or due date. | Must |
 | FR-M4-06 | The system shall offer the development area as a choice from a fixed list (for example: Language, Motor, Social-emotional, Cognitive, Self-care). | Should |
 
 ### M5 – Specialist entries
@@ -84,7 +84,7 @@ Priority: **Must** (required for v1.0) / **Should** (planned) / **Could** (if ti
 | ID | Requirement | Priority |
 |---|---|---|
 | FR-M6-01 | The system shall allow the parent and linked specialists to upload a PDF or image (JPG, PNG) file for the child. | Must |
-| FR-M6-02 | The system shall reject files of other types and files larger than 10 MB. | Should |
+| FR-M6-02 | The system shall reject files of other types and files larger than 10 MB. | Must |
 | FR-M6-03 | The system shall list the child's documents with name, type, uploader and upload date. | Must |
 | FR-M6-04 | The system shall allow the parent and linked specialists to view and download a document. | Must |
 | FR-M6-05 | The API shall not allow the child to list or download documents. | Must |
@@ -148,3 +148,4 @@ The editable source of the diagram is `docs/img/use-case-diagram.drawio` (open i
 | Date | Change | By |
 |---|---|---|
 | 2026-11-03 | First version | İrem Ozan |
+| 2026-11-04 | Review fixes: FR-M3-04, FR-M4-05 and FR-M6-02 priority set to Must; FR-M4-04 clarified (parent sees all task statuses); use case diagram updated | İrem Ozan |
