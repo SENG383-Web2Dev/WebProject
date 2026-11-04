@@ -2,7 +2,7 @@
 
 **Team name:** Web2Dev  
 **Version:** ☐ First version (Week 6) ☐ Final (Week 10)  
-**Last updated:** 2026-11-03
+**Last updated:** 2026-11-04
 
 > Keep this file at `docs/SDD.md`. Describe how the system is built; the SRS describes what it does.
 > Diagrams can be written in Mermaid (renders directly on GitHub) or added as images from `docs/img/`.
@@ -152,7 +152,7 @@ All endpoints except login require a valid JWT (FR-M1-04). Access checks run in 
 | POST | `/api/children/:childId/events` | Add an event (FR-M3-01) | M3 |
 | PUT | `/api/events/:id` | Edit an event by its creator (FR-M3-05, Should) | M3 |
 | DELETE | `/api/events/:id` | Delete an event by its creator (FR-M3-05, Should) | M3 |
-| GET | `/api/tasks` | Tasks visible to the logged-in user; the child sees own tasks, others see tasks they assigned (FR-M4-02, FR-M4-04). Planned, WEB-30 | M4 |
+| GET | `/api/tasks` | Tasks visible to the logged-in user: the child sees only their own tasks (FR-M4-02), the parent sees all of the child's tasks with their status, and a specialist sees the tasks they assigned (FR-M4-04). Planned, WEB-30 | M4 |
 | POST | `/api/children/:childId/tasks` | Assign a task to a child (FR-M4-01) | M4 |
 | PATCH | `/api/tasks/:id/done` | Child marks a task as done (FR-M4-03) | M4 |
 | GET | `/api/children/:childId/observations` | List observations, newest first; not available to the child (FR-M5-02, FR-M5-05) | M5 |
@@ -206,3 +206,4 @@ sequenceDiagram
 | 2026-10-30 | First version | |
 | 2026-10-30 | AI provider decided: Gemini API (WEB-24) | Sude Naz Metli |
 | 2026-11-03 | Architecture overview, data model and API list (Stage A, WEB-28) | Sude Naz Metli |
+| 2026-11-04 | `GET /api/tasks` access rule updated to match the revised FR-M4-04 (parent sees all of the child's tasks) | Sude Naz Metli |
