@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="Child my week wireframe">
+<title>Child my week wireframe</title>
+<rect x="0" y="0" width="1000" height="560" fill="#ffffff"/>
+<rect x="0.5" y="0.5" width="999" height="559" fill="none" stroke="#9ca3af"/>
+<rect x="0" y="0" width="1000" height="52" rx="0" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="20" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="17" fill="#111827" font-weight="700" text-anchor="start">Child Development Platform</text>
+<text x="270" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#111827" font-weight="700" text-anchor="start">My week</text>
+<line x1="270" y1="40" x2="323.2" y2="40" stroke="#374151" stroke-width="2"/>
+<text x="880" y="31" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="end">Deniz (Child)</text>
+<rect x="896" y="11" width="84" height="30" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="938.0" y="30.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="600" text-anchor="middle">Log out</text>
+<rect x="20" y="75" width="570" height="430" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="34" y="99" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">My tasks</text>
+<rect x="34" y="115" width="542" height="88" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+<text x="54" y="151" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="17" fill="#6b7280" font-weight="700" text-anchor="start">Read for 20 minutes</text>
+<text x="54" y="175" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#6b7280" font-weight="normal" text-anchor="start">Due Tue 3 Nov · Language</text>
+<rect x="440" y="148" width="53.599999999999994" height="19" rx="9" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="447" y="162" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#111827" font-weight="600" text-anchor="start">✓ Done</text>
+<rect x="34" y="220" width="542" height="88" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+<text x="54" y="256" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="17" fill="#111827" font-weight="700" text-anchor="start">Tie shoelaces</text>
+<text x="54" y="280" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#6b7280" font-weight="normal" text-anchor="start">Due Thu 5 Nov · Self-care</text>
+<rect x="420" y="246" width="140" height="36" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="490.0" y="269.04" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#ffffff" font-weight="600" text-anchor="middle">Mark as done</text>
+<rect x="34" y="325" width="542" height="88" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+<text x="54" y="361" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="17" fill="#111827" font-weight="700" text-anchor="start">Draw a family picture</text>
+<text x="54" y="385" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#6b7280" font-weight="normal" text-anchor="start">Due Fri 6 Nov · Motor</text>
+<rect x="420" y="351" width="140" height="36" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="490.0" y="374.04" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#ffffff" font-weight="600" text-anchor="middle">Mark as done</text>
+<rect x="34" y="457" width="218.5" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="40" y="470" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M4-02 only the child's own tasks</text>
+<rect x="300" y="457" width="135.9" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="306" y="470" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M4-03 mark as done</text>
+<rect x="610" y="75" width="370" height="430" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="624" y="99" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">My schedule this week</text>
+<rect x="624" y="115" width="342" height="56" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+<text x="638" y="138" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Mon 2 Nov · 14:00–15:00</text>
+<text x="638" y="158" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="600" text-anchor="start">Speech therapy</text>
+<rect x="624" y="185" width="342" height="56" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+<text x="638" y="208" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Wed 4 Nov · 16:00–17:00</text>
+<text x="638" y="228" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="600" text-anchor="start">Swimming</text>
+<rect x="624" y="255" width="342" height="56" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+<text x="638" y="278" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Thu 5 Nov · 10:00–10:30</text>
+<text x="638" y="298" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="600" text-anchor="start">School meeting</text>
+<rect x="624" y="457" width="206.70000000000002" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="630" y="470" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M3-03 the child's own schedule</text>
+<text x="20" y="530" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start" font-style="italic">The child has no observations, documents, statistics or AI summary screens (FR-M1-05, FR-M5-05, FR-M6-05).</text>
+<text x="986" y="550" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="10.5" fill="#1d4ed8" text-anchor="end">Blue labels: requirements covered (not part of the UI)</text>
+</svg>

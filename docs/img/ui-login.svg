@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="Login wireframe">
+<title>Login wireframe</title>
+<rect x="0" y="0" width="1000" height="560" fill="#ffffff"/>
+<rect x="0.5" y="0.5" width="999" height="559" fill="none" stroke="#9ca3af"/>
+<rect x="0" y="0" width="1000" height="52" rx="0" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="20" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="17" fill="#111827" font-weight="700" text-anchor="start">Child Development Platform</text>
+<rect x="330" y="100" width="340" height="355" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="500.0" y="145" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="22" fill="#111827" font-weight="700" text-anchor="middle">Log in</text>
+<text x="360" y="184" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Email</text>
+<rect x="360" y="190" width="280" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="368" y="209.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">ayse.demir@example.com</text>
+<text x="360" y="249" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Password</text>
+<rect x="360" y="255" width="280" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="368" y="274.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">••••••••</text>
+<rect x="360" y="302" width="280" height="30" rx="4" fill="#fee2e2" stroke="#fee2e2" stroke-width="1"/>
+<text x="372" y="322" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#b91c1c" font-weight="normal" text-anchor="start">Wrong email or password.</text>
+<rect x="360" y="350" width="280" height="36" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="500.0" y="373.04" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#ffffff" font-weight="600" text-anchor="middle">Log in</text>
+<text x="360" y="410" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">There is no role choice: after login the user</text>
+<text x="360" y="427" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">goes to the screens of the role in the account.</text>
+<rect x="690" y="192" width="171.3" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="696" y="205" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M1-01 email and password</text>
+<rect x="690" y="309" width="183.10000000000002" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="696" y="322" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M1-02 error on wrong login</text>
+<rect x="690" y="359" width="194.9" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="696" y="372" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M1-04 JWT kept by the client</text>
+<rect x="690" y="407" width="189.0" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="696" y="420" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M1-03 role from the account</text>
+<text x="986" y="550" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="10.5" fill="#1d4ed8" text-anchor="end">Blue labels: requirements covered (not part of the UI)</text>
+</svg>
