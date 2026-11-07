@@ -5,6 +5,7 @@ Node.js + Express backend with SQLite.
 ## Endpoints
 
 - `GET /api/health` – Health check endpoint returning `{ status: "ok", uptime, timestamp }`.
+- `GET /api/tasks` – Walking skeleton tasks endpoint returning sample tasks from SQLite as JSON (`id`, `title`, `done`, `created_at`).
 
 ## Running Locally
 
