@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="820" viewBox="0 0 1000 820" role="img" aria-label="Specialist child page wireframe">
+<title>Specialist child page wireframe</title>
+<rect x="0" y="0" width="1000" height="820" fill="#ffffff"/>
+<rect x="0.5" y="0.5" width="999" height="819" fill="none" stroke="#9ca3af"/>
+<rect x="0" y="0" width="1000" height="52" rx="0" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="20" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="17" fill="#111827" font-weight="700" text-anchor="start">Child Development Platform</text>
+<text x="270" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#111827" font-weight="700" text-anchor="start">My children</text>
+<line x1="270" y1="40" x2="353.6" y2="40" stroke="#374151" stroke-width="2"/>
+<text x="880" y="31" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="end">Zeynep Arslan (Psychologist)</text>
+<rect x="896" y="11" width="84" height="30" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="938.0" y="30.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="600" text-anchor="middle">Log out</text>
+<rect x="20" y="70" width="200" height="720" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="34" y="94" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">My children</text>
+<rect x="30" y="110" width="180" height="34" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="42" y="132" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#ffffff" font-weight="600" text-anchor="start">Deniz Demir</text>
+<rect x="30" y="152" width="180" height="34" rx="4" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+<text x="42" y="174" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="600" text-anchor="start">Ali Yıldız</text>
+<rect x="30" y="202" width="153.60000000000002" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="36" y="215" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M2-05 linked children</text>
+<text x="240" y="98" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="20" fill="#111827" font-weight="700" text-anchor="start">Deniz Demir</text>
+<text x="372" y="97" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#6b7280" font-weight="normal" text-anchor="start">Week of 2 Nov 2026</text>
+<rect x="706" y="76" width="130" height="30" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="771.0" y="95.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="middle">Weekly schedule</text>
+<rect x="846" y="76" width="134" height="30" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="913.0" y="95.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="middle">Upload document</text>
+<rect x="846" y="112" width="59.2" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="852" y="125" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M6-01</text>
+<rect x="240" y="140" width="360" height="200" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="254" y="164" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">New observation</text>
+<text x="254" y="186" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Date</text>
+<rect x="254" y="192" width="150" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="262" y="211.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">4 Nov 2026</text>
+<rect x="254" y="232" width="332" height="60" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="262" y="252" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12.5" fill="#6b7280" font-weight="normal" text-anchor="start">Write what you observed…</text>
+<rect x="506" y="300" width="80" height="30" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="546.0" y="319.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#ffffff" font-weight="600" text-anchor="middle">Save</text>
+<rect x="254" y="305" width="130.0" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="260" y="318" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M5-01 dated entry</text>
+<rect x="240" y="355" width="360" height="225" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="254" y="379" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">Observations (newest first)</text>
+<text x="254" y="410" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="start">4 Nov · Zeynep Arslan</text>
+<rect x="536" y="394" width="50" height="24" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="561.0" y="410.14" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#111827" font-weight="600" text-anchor="middle">Edit</text>
+<rect x="254" y="422" width="320" height="7" rx="3" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="254" y="436" width="250" height="7" rx="3" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="254" y="480" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="start">3 Nov · Mehmet Kaya (Teacher)</text>
+<rect x="470" y="465" width="53.599999999999994" height="19" rx="9" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="477" y="479" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#111827" font-weight="600" text-anchor="start">edited</text>
+<rect x="254" y="492" width="320" height="7" rx="3" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="254" y="506" width="250" height="7" rx="3" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="254" y="552" width="265.70000000000005" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="260" y="565" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M5-02 · FR-M5-03 author edits · FR-M5-04</text>
+<rect x="620" y="140" width="360" height="260" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="634" y="164" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">Assign task</text>
+<text x="634" y="186" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Title</text>
+<rect x="634" y="192" width="332" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="642" y="211.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Read for 20 minutes</text>
+<text x="634" y="239" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Description</text>
+<rect x="634" y="245" width="332" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="642" y="264.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Read a story book aloud</text>
+<text x="634" y="292" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Development area</text>
+<rect x="634" y="298" width="190" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="642" y="317.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Language</text>
+<text x="808" y="317.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#6b7280" font-weight="normal" text-anchor="start">▾</text>
+<text x="836" y="292" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Due date</text>
+<rect x="836" y="298" width="130" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="844" y="317.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">3 Nov 2026</text>
+<rect x="886" y="340" width="80" height="30" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="926.0" y="359.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#ffffff" font-weight="600" text-anchor="middle">Assign</text>
+<rect x="634" y="375" width="283.40000000000003" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="640" y="388" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M4-01 · FR-M4-05 required fields · FR-M4-06</text>
+<rect x="620" y="415" width="360" height="165" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="634" y="439" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">Tasks of the child</text>
+<text x="634" y="465" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12.5" fill="#111827" font-weight="normal" text-anchor="start">Read for 20 minutes</text>
+<text x="800" y="465" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#6b7280" font-weight="normal" text-anchor="start">Mehmet Kaya</text>
+<rect x="900" y="449" width="40.4" height="19" rx="9" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="907" y="463" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#ffffff" font-weight="600" text-anchor="start">done</text>
+<text x="634" y="493" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12.5" fill="#111827" font-weight="normal" text-anchor="start">Tie shoelaces</text>
+<text x="800" y="493" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#6b7280" font-weight="normal" text-anchor="start">Ayşe Demir</text>
+<rect x="900" y="477" width="60.199999999999996" height="19" rx="9" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="907" y="491" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#111827" font-weight="600" text-anchor="start">pending</text>
+<text x="634" y="521" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12.5" fill="#111827" font-weight="normal" text-anchor="start">Draw a family picture</text>
+<text x="800" y="521" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#6b7280" font-weight="normal" text-anchor="start">Zeynep Arslan</text>
+<rect x="900" y="505" width="60.199999999999996" height="19" rx="9" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="907" y="519" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#111827" font-weight="600" text-anchor="start">pending</text>
+<rect x="634" y="552" width="153.60000000000002" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="640" y="565" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M4-04 status of tasks</text>
+<rect x="240" y="595" width="740" height="195" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="254" y="619" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">AI summary for the specialist</text>
+<rect x="480" y="604" width="93.19999999999999" height="19" rx="9" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="487" y="618" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#ffffff" font-weight="600" text-anchor="start">AI-generated</text>
+<rect x="836" y="605" width="130" height="28" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="901.0" y="623.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">Get AI summary</text>
+<rect x="254" y="642" width="700" height="7" rx="3" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="254" y="656" width="660" height="7" rx="3" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<rect x="254" y="670" width="520" height="7" rx="3" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="254" y="700" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start">Sources:</text>
+<text x="316" y="700" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="normal" text-anchor="start" text-decoration="underline">Observation 4 Nov</text>
+<text x="452.2" y="700" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="normal" text-anchor="start" text-decoration="underline">Observation 3 Nov</text>
+<text x="588.4" y="700" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="normal" text-anchor="start" text-decoration="underline">Task: Tie shoelaces</text>
+<text x="254" y="722" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#6b7280" font-weight="normal" text-anchor="start" font-style="italic">Based only on this week's records. It does not give a diagnosis or treatment advice.</text>
+<rect x="254" y="739" width="360.1" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="260" y="752" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M8-01 · FR-M8-02 specialist prompt · FR-M8-04 · FR-M8-05</text>
+<text x="986" y="810" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="10.5" fill="#1d4ed8" text-anchor="end">Blue labels: requirements covered (not part of the UI)</text>
+</svg>
