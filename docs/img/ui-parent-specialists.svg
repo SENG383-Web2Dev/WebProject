@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-label="Parent linked specialists wireframe">
+<title>Parent linked specialists wireframe</title>
+<rect x="0" y="0" width="1000" height="650" fill="#ffffff"/>
+<rect x="0.5" y="0.5" width="999" height="649" fill="none" stroke="#9ca3af"/>
+<rect x="0" y="0" width="1000" height="52" rx="0" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="20" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="17" fill="#111827" font-weight="700" text-anchor="start">Child Development Platform</text>
+<text x="270" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#6b7280" font-weight="normal" text-anchor="start">Dashboard</text>
+<text x="372.4" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#111827" font-weight="700" text-anchor="start">Specialists</text>
+<line x1="372.4" y1="40" x2="456.0" y2="40" stroke="#374151" stroke-width="2"/>
+<text x="490.0" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#6b7280" font-weight="normal" text-anchor="start">Documents</text>
+<text x="880" y="31" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="end">Ayşe Demir (Parent)</text>
+<rect x="896" y="11" width="84" height="30" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="938.0" y="30.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="600" text-anchor="middle">Log out</text>
+<text x="20" y="92" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="20" fill="#111827" font-weight="700" text-anchor="start">Specialists of Deniz Demir</text>
+<rect x="20" y="110" width="960" height="140" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="34" y="134" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">Link a specialist</text>
+<text x="34" y="159" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Specialist's email</text>
+<rect x="34" y="165" width="360" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="42" y="184.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">selin.oz@example.com</text>
+<text x="410" y="159" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">Type</text>
+<rect x="410" y="165" width="240" height="30" rx="4" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+<text x="418" y="184.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Teacher</text>
+<text x="634" y="184.5" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#6b7280" font-weight="normal" text-anchor="start">▾</text>
+<rect x="666" y="165" width="90" height="30" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="711.0" y="184.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#ffffff" font-weight="600" text-anchor="middle">Link</text>
+<rect x="34" y="205" width="360" height="28" rx="4" fill="#fee2e2" stroke="#fee2e2" stroke-width="1"/>
+<text x="44" y="224" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12.5" fill="#b91c1c" font-weight="normal" text-anchor="start">No registered specialist with this email.</text>
+<text x="410" y="224" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11.5" fill="#6b7280" font-weight="normal" text-anchor="start">Types: Teacher, Psychologist, Doctor, Special education teacher, Coach</text>
+<rect x="772" y="172" width="141.8" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="778" y="185" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M2-01 link by email</text>
+<rect x="772" y="211" width="171.3" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="778" y="224" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M2-02 unregistered email</text>
+<rect x="20" y="265" width="960" height="190" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="34" y="289" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">Linked specialists</text>
+<text x="34" y="315" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start">Name</text>
+<text x="260" y="315" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start">Email</text>
+<text x="560" y="315" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start">Type</text>
+<text x="760" y="315" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start"></text>
+<line x1="34" y1="323" x2="966" y2="323" stroke="#d1d5db" stroke-width="1"/>
+<text x="34" y="350" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Mehmet Kaya</text>
+<text x="260" y="350" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">mehmet.kaya@example.com</text>
+<text x="560" y="350" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Teacher</text>
+<rect x="886" y="330" width="80" height="28" rx="4" fill="#ffffff" stroke="#b91c1c" stroke-width="1"/>
+<text x="926.0" y="348.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#b91c1c" font-weight="600" text-anchor="middle">Unlink</text>
+<text x="34" y="390" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Zeynep Arslan</text>
+<text x="260" y="390" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">zeynep.arslan@example.com</text>
+<text x="560" y="390" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Psychologist</text>
+<rect x="886" y="370" width="80" height="28" rx="4" fill="#ffffff" stroke="#b91c1c" stroke-width="1"/>
+<text x="926.0" y="388.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#b91c1c" font-weight="600" text-anchor="middle">Unlink</text>
+<rect x="34" y="427" width="218.5" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="40" y="440" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M2-03 list of linked specialists</text>
+<line x1="926" y1="398" x2="926" y2="478" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="918" y="470" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#6b7280" font-weight="normal" text-anchor="end" font-style="italic">after clicking Unlink</text>
+<rect x="556" y="478" width="414" height="140" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.5"/>
+<text x="576" y="508" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="16" fill="#111827" font-weight="700" text-anchor="start">Unlink Zeynep Arslan?</text>
+<text x="576" y="534" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12.5" fill="#6b7280" font-weight="normal" text-anchor="start">This specialist will no longer have access to</text>
+<text x="576" y="552" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12.5" fill="#6b7280" font-weight="normal" text-anchor="start">any of Deniz Demir's records.</text>
+<rect x="764" y="574" width="90" height="30" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="809.0" y="593.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="600" text-anchor="middle">Cancel</text>
+<rect x="866" y="574" width="90" height="30" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="911.0" y="593.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#ffffff" font-weight="600" text-anchor="middle">Unlink</text>
+<rect x="330" y="581" width="236.20000000000002" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="336" y="594" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M2-04 confirmation before unlinking</text>
+<text x="986" y="640" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="10.5" fill="#1d4ed8" text-anchor="end">Blue labels: requirements covered (not part of the UI)</text>
+</svg>

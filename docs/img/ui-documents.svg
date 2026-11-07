@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="Documents wireframe">
+<title>Documents wireframe</title>
+<rect x="0" y="0" width="1000" height="560" fill="#ffffff"/>
+<rect x="0.5" y="0.5" width="999" height="559" fill="none" stroke="#9ca3af"/>
+<rect x="0" y="0" width="1000" height="52" rx="0" fill="#e5e7eb" stroke="#e5e7eb" stroke-width="1"/>
+<text x="20" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="17" fill="#111827" font-weight="700" text-anchor="start">Child Development Platform</text>
+<text x="270" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#6b7280" font-weight="normal" text-anchor="start">Dashboard</text>
+<text x="372.4" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#6b7280" font-weight="normal" text-anchor="start">Specialists</text>
+<text x="490.0" y="32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="14" fill="#111827" font-weight="700" text-anchor="start">Documents</text>
+<line x1="490.0" y1="40" x2="558.4" y2="40" stroke="#374151" stroke-width="2"/>
+<text x="880" y="31" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="end">Ayşe Demir (Parent)</text>
+<rect x="896" y="11" width="84" height="30" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="938.0" y="30.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="600" text-anchor="middle">Log out</text>
+<text x="20" y="92" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="20" fill="#111827" font-weight="700" text-anchor="start">Documents of Deniz Demir</text>
+<rect x="20" y="110" width="960" height="115" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="34" y="134" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">Upload a document</text>
+<rect x="34" y="150" width="110" height="30" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="89.0" y="169.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="600" text-anchor="middle">Choose file</text>
+<text x="156" y="170" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">school-report-nov.pdf</text>
+<rect x="340" y="150" width="90" height="30" rx="4" fill="#374151" stroke="#374151" stroke-width="1"/>
+<text x="385.0" y="169.68" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#ffffff" font-weight="600" text-anchor="middle">Upload</text>
+<text x="34" y="205" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start">PDF, JPG or PNG, up to 10 MB.</text>
+<rect x="450" y="150" width="280" height="30" rx="4" fill="#fee2e2" stroke="#fee2e2" stroke-width="1"/>
+<text x="462" y="170" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12.5" fill="#b91c1c" font-weight="normal" text-anchor="start">notes.docx: this file type is not allowed.</text>
+<rect x="745" y="157" width="189.0" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="751" y="170" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M6-01 · FR-M6-02 type, size</text>
+<rect x="20" y="240" width="960" height="230" rx="6" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+<text x="34" y="264" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="15" fill="#111827" font-weight="700" text-anchor="start">Documents</text>
+<text x="34" y="290" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start">Name</text>
+<text x="300" y="290" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start">Type</text>
+<text x="390" y="290" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start">Uploaded by</text>
+<text x="560" y="290" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start">Date</text>
+<text x="700" y="290" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="600" text-anchor="start"></text>
+<line x1="34" y1="298" x2="966" y2="298" stroke="#d1d5db" stroke-width="1"/>
+<text x="34" y="326" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">school-report-nov.pdf</text>
+<text x="300" y="326" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">PDF</text>
+<text x="390" y="326" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Mehmet Kaya</text>
+<text x="560" y="326" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">5 Nov 2026</text>
+<rect x="790" y="306" width="70" height="28" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="825.0" y="324.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="middle">View</text>
+<rect x="870" y="306" width="96" height="28" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="918.0" y="324.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="middle">Download</text>
+<text x="34" y="366" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">drawing-scan.jpg</text>
+<text x="300" y="366" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">JPG</text>
+<text x="390" y="366" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Ayşe Demir</text>
+<text x="560" y="366" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">2 Nov 2026</text>
+<rect x="790" y="346" width="70" height="28" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="825.0" y="364.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="middle">View</text>
+<rect x="870" y="346" width="96" height="28" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="918.0" y="364.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="middle">Download</text>
+<text x="34" y="406" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">speech-assessment.pdf</text>
+<text x="300" y="406" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">PDF</text>
+<text x="390" y="406" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">Zeynep Arslan</text>
+<text x="560" y="406" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="13" fill="#111827" font-weight="normal" text-anchor="start">30 Oct 2026</text>
+<rect x="790" y="386" width="70" height="28" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="825.0" y="404.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="middle">View</text>
+<rect x="870" y="386" width="96" height="28" rx="4" fill="#ffffff" stroke="#6b7280" stroke-width="1"/>
+<text x="918.0" y="404.32" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#111827" font-weight="600" text-anchor="middle">Download</text>
+<rect x="34" y="442" width="218.5" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="40" y="455" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M6-03 name, type, uploader, date</text>
+<rect x="300" y="442" width="165.4" height="18" rx="9" fill="#dbeafe" stroke="#dbeafe" stroke-width="1"/>
+<text x="306" y="455" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600" text-anchor="start">FR-M6-04 view and download</text>
+<text x="20" y="500" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280" font-weight="normal" text-anchor="start" font-style="italic">Linked specialists see the same page. The child has no Documents page, and the API returns 403 (FR-M6-05).</text>
+<text x="986" y="550" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="10.5" fill="#1d4ed8" text-anchor="end">Blue labels: requirements covered (not part of the UI)</text>
+</svg>
