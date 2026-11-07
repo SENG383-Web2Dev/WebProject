@@ -164,6 +164,8 @@ Note: The `tasks` table created in WEB-23 is a sample table to test the database
 
 All endpoints except login and the health check require a valid JWT (FR-M1-04); the health check returns no user data. Access checks run in the backend for every request (NFR-02). Bodies are JSON, with camelCase field names in JSON and snake_case column names in the database. Errors return `{ "error": "message" }` with status 400 (invalid input), 401 (missing or invalid token), 403 (not allowed) or 404 (not found). A `week` value is the date of the Monday that starts the week, as `YYYY-MM-DD`. Only `GET /api/health` exists today (WEB-20); all other endpoints are planned.
 
+**Walking skeleton (v0.0).** Before login and the `TASK` entity exist, a temporary `GET /api/tasks` (WEB-30) returns the sample tasks from the WEB-23 `tasks` table without a token, and the React task list (WEB-31) shows them. This proves that SQLite, Express and React work together end to end. The temporary endpoint is removed when `GET /api/children/:childId/tasks` is implemented.
+
 | Method | Endpoint | Description | Module |
 |---|---|---|---|
 | POST | `/api/auth/login` | Log in with email and password; returns a JWT and the user's role, which comes from the account (FR-M1-01 to FR-M1-04) | M1 |
@@ -179,7 +181,7 @@ All endpoints except login and the health check require a valid JWT (FR-M1-04); 
 | POST | `/api/children/:childId/events` | Add an event; body: `title`, `startTime`, `endTime`. Returns 400 if the end time is not after the start time (FR-M3-01, FR-M3-04) | M3 |
 | PUT | `/api/events/:id` | Edit an event; only its creator (FR-M3-05, Should) | M3 |
 | DELETE | `/api/events/:id` | Delete an event; only its creator (FR-M3-05, Should) | M3 |
-| GET | `/api/children/:childId/tasks` | Tasks of a child with their status and who assigned them. The parent and linked specialists see all of the child's tasks (FR-M4-04); the child account sees only its own tasks (FR-M4-02). Planned, WEB-30 | M4 |
+| GET | `/api/children/:childId/tasks` | Tasks of a child with their status and who assigned them. The parent and linked specialists see all of the child's tasks (FR-M4-04); the child account sees only its own tasks (FR-M4-02) | M4 |
 | POST | `/api/children/:childId/tasks` | Assign a task; body: `title`, `description`, `developmentArea`, `dueDate`. Returns 400 without a title or due date (FR-M4-01, FR-M4-05, FR-M4-06) | M4 |
 | PATCH | `/api/tasks/:id/done` | The child marks one of their own tasks as done (FR-M4-03) | M4 |
 | GET | `/api/children/:childId/observations` | List observations, newest first; not available to the child (FR-M5-02, FR-M5-05) | M5 |
@@ -379,3 +381,4 @@ The wireframes below show the main screens and which requirements each part cove
 | 2026-11-04 | `GET /api/tasks` access rule updated to match the revised FR-M4-04 (parent sees all of the child's tasks) | Sude Naz Metli |
 | 2026-11-07 | Review fixes (PR #11): `CHILD.child_account_id` and its login relation, event times as datetimes, stored AI summaries (`AI_SUMMARY`), `GET /api/children`, `GET /api/auth/me`, tasks moved under `/api/children/:childId`, AI summary week sent in the request body; linked specialists see all of a child's tasks, as in the assignment's required scope (WEB-28) | Sude Naz Metli |
 | 2026-11-07 | Stage B: backend layers, module design, access rules, sequence diagrams for the 3 critical flows, screen wireframes; template notes removed (WEB-28) | Sude Naz Metli |
+| 2026-11-07 | Temporary walking-skeleton endpoint `GET /api/tasks` (WEB-30, WEB-31) described separately from the final task endpoint | Sude Naz Metli |
