@@ -21,3 +21,17 @@ export function openDatabase(path = process.env.DB_PATH || './data/app.db') {
   db.exec(SCHEMA);
   return db;
 }
+
+let currentDb = null;
+
+export function getDatabase() {
+  if (!currentDb) {
+    currentDb = openDatabase();
+  }
+  return currentDb;
+}
+
+export function setDatabase(db) {
+  currentDb = db;
+}
+
