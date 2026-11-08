@@ -41,7 +41,50 @@ WebProject/
 
 ## Running Locally
 
-_Setup and run instructions will be added together with the walking skeleton (v0.0)._
+### Prerequisites
+
+- **Node.js**: v22.13+ or v23.4+ (required for built-in `node:sqlite`; CI runs on Node 22)
+- **npm**: v10+ (bundled with Node.js)
+- **Git**
+
+### 1. Backend Setup (`server`)
+
+Open a terminal and start the backend server:
+
+```bash
+cd server
+npm install
+npm run seed
+npm run dev
+```
+
+- The backend API runs on `http://localhost:5000`.
+- `npm run seed` creates `./data/app.db` and populates the `tasks` table with sample data (skips automatically if data already exists).
+- To run automated backend tests: `npm test` (or `npm run test:coverage`).
+
+### 2. Frontend Setup (`client`)
+
+Open a second terminal and start the frontend dev server:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+- The frontend application runs on `http://localhost:5173`.
+- Vite automatically proxies `/api/*` calls to the Express server on port 5000.
+- To run automated frontend tests: `npm test` (or `npm run lint` for Oxlint).
+
+### 3. Verification (Walking Skeleton v0.0)
+
+Once both servers are running:
+
+1. Open `http://localhost:5173` in your browser. The page should load and display the sample tasks from the SQLite database with their status (`Done` or `To do`).
+2. You can also verify the backend API endpoints directly:
+   - `GET http://localhost:5000/api/health` — Health check endpoint (`{ "status": "ok", ... }`)
+   - `GET http://localhost:5000/api/tasks` — Returns sample tasks as JSON array
+
 
 ## Workflow
 
