@@ -61,9 +61,9 @@ Other epics: SETUP (infrastructure, CI, E2E and coverage tasks, Sprints 1–4), 
 | Sprint | Weeks | Sprint goal | Ends with |
 |---|---|---|---|
 | Sprint 1 | Weeks 5–6 (30 Oct – 8 Nov) | Jira and repo setup, walking skeleton, first versions of SRS and SDD, PMP-1 and PMP-2 | Walking skeleton (v0.0), Week 6 |
-| Sprint 2 | Weeks 7–8 (9 – 22 Nov) | M1–M4 working with API tests; Playwright set up and first E2E test in CI; PMP-3 and PMP-4 | Release v0.1, mid-term |
-| Sprint 3 | Weeks 9–10 (23 Nov – 6 Dec) | Mid-term demo (week 9); M5–M8 working; E2E tests for the 3 critical flows; branch coverage ≥40%; SRS/SDD final; PMP-5 | Release v0.2, Week 10 |
-| Sprint 4 | Weeks 11–12 (7 – 20 Dec) | An E2E test for each of M1–M8; branch coverage ≥60%; PMP-6; final report, final peer review, presentation and live demo | Release v1.0, final |
+| Sprint 2 | Weeks 7–8 (9 – 22 Nov) | M1–M4 working with API tests; Playwright set up and first E2E test in CI; PMP-3 | Release v0.1, mid-term |
+| Sprint 3 | Weeks 9–10 (23 Nov – 6 Dec) | Mid-term demo (week 9); M5–M8 working; E2E tests for the 3 critical flows; branch coverage ≥40%; SRS/SDD final; PMP-4 | Release v0.2, Week 10 |
+| Sprint 4 | Weeks 11–12 (7 – 20 Dec) | An E2E test for each of M1–M8; branch coverage ≥60%; PMP-5 and PMP-6; final report, final peer review, presentation and live demo | Release v1.0, final |
 
 ---
 
