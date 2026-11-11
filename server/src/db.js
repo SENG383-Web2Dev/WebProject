@@ -17,6 +17,24 @@ const SCHEMA = `
     password_hash TEXT NOT NULL,
     role TEXT NOT NULL CHECK (role IN ('parent', 'specialist', 'child'))
   );
+
+  CREATE TABLE IF NOT EXISTS children (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    parent_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    child_account_id INTEGER UNIQUE REFERENCES users(id) ON DELETE SET NULL,
+    name TEXT NOT NULL,
+    birth_date TEXT
+  );
+
+  CREATE TABLE IF NOT EXISTS specialist_links (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    child_id INTEGER NOT NULL REFERENCES children(id) ON DELETE CASCADE,
+    specialist_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    specialist_type TEXT NOT NULL,
+    active INTEGER NOT NULL DEFAULT 1 CHECK (active IN (0, 1)),
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE (child_id, specialist_id)
+  );
 `;
 
 export function openDatabase(path = process.env.DB_PATH || './data/app.db') {
