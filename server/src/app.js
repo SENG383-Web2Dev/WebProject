@@ -1,10 +1,19 @@
 import express from 'express';
 import cors from 'cors';
+import rateLimit from 'express-rate-limit';
 import { getDatabase } from './db.js';
 import authRouter from './routes/auth.js';
 import { requireAuth } from './middleware/auth.js';
 
 const app = express();
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 300,
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  message: { error: 'Too many API requests. Please try again later.' },
+});
 
 app.use(cors());
 app.use(express.json());
@@ -32,7 +41,8 @@ app.get('/api/tasks', (req, res) => {
 // M1: Authentication routes (login is public; /me and /logout require JWT)
 app.use('/api/auth', authRouter);
 
-// Require a valid JWT on every other /api endpoint (FR-M1-04, NFR-02)
+// Rate-limit and require a valid JWT on every other /api endpoint (FR-M1-04, NFR-02)
+app.use('/api', apiLimiter);
 app.use('/api', requireAuth);
 
 // Protected API fallback for unmatched routes

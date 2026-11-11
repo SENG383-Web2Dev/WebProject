@@ -144,6 +144,17 @@ describe('seedDatabase and POST /api/auth/login', () => {
       expect(response.body).toEqual({ error: 'Invalid JSON body.' });
     });
 
+    it('applies rate limiting headers on POST /api/auth/login', async () => {
+      const response = await request(app).post('/api/auth/login').send({
+        email: 'ayse.demir@example.com',
+        password: DEFAULT_SEED_PASSWORD,
+      });
+
+      expect(response.status).toBe(200);
+      expect(response.headers.ratelimit).toBeDefined();
+      expect(response.headers['ratelimit-policy']).toBeDefined();
+    });
+
     it('rejects malformed tokens in verifyToken', () => {
       expect(() => verifyToken('not-a-valid-jwt')).toThrow('Invalid or expired token.');
     });
