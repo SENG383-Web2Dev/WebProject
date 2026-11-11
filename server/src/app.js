@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { getDatabase } from './db.js';
+import eventsRouter from './routes/events.js';
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.get('/api/tasks', (req, res) => {
     res.status(500).json({ error: 'Failed to fetch tasks' });
   }
 });
-
+// M3 Weekly schedule (WEB-44)
+app.use('/api', eventsRouter);
 export default app;
