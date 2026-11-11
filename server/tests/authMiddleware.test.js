@@ -1,4 +1,5 @@
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import request from 'supertest';
 import app from '../src/app.js';
 import { openDatabase, setDatabase } from '../src/db.js';
@@ -9,6 +10,15 @@ import { seedDatabase } from '../src/seed.js';
 function createRoleGuardedTestApp() {
   const testApp = express();
   testApp.use(express.json());
+  testApp.use(
+    '/api',
+    rateLimit({
+      windowMs: 15 * 60 * 1000,
+      limit: 300,
+      standardHeaders: 'draft-7',
+      legacyHeaders: false
+    })
+  );
   testApp.use('/api', requireAuth);
 
   testApp.get('/api/parent-only', requireRole('parent'), (req, res) => {

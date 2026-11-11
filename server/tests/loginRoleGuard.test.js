@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import jwt from 'jsonwebtoken';
 import request from 'supertest';
 import app from '../src/app.js';
@@ -51,6 +52,15 @@ async function insertTestUser(db, { name, email, password, role }) {
 function createGuardedApp() {
   const testApp = express();
   testApp.use(express.json());
+  testApp.use(
+    '/api/test-guards',
+    rateLimit({
+      windowMs: 15 * 60 * 1000,
+      limit: 300,
+      standardHeaders: 'draft-7',
+      legacyHeaders: false
+    })
+  );
 
   testApp.get('/api/test-guards/parent-only', requireAuth, requireRole('parent'), (req, res) => {
     res.status(200).json({ scope: 'parent-only', role: req.user.role, userId: req.user.id });
