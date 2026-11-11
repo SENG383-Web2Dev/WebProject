@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { getDatabase } from './db.js';
+import authRouter from './routes/auth.js';
 
 const app = express();
 
@@ -25,6 +26,19 @@ app.get('/api/tasks', (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch tasks' });
   }
+});
+
+// M1: Authentication routes (WEB-36)
+app.use('/api/auth', authRouter);
+
+// Centralized API error handler
+app.use((err, req, res, _next) => {
+  if (err?.type === 'entity.parse.failed') {
+    return res.status(400).json({ error: 'Invalid JSON body.' });
+  }
+  const status = err.status || 500;
+  const message = status === 500 ? 'Internal server error' : err.message;
+  return res.status(status).json({ error: message });
 });
 
 export default app;
