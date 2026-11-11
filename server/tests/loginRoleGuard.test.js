@@ -1,16 +1,54 @@
+import bcrypt from 'bcryptjs';
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import request from 'supertest';
 import app from '../src/app.js';
 import { openDatabase, setDatabase } from '../src/db.js';
 import { requireAuth, requireRole } from '../src/middleware/auth.js';
-import { DEFAULT_SEED_PASSWORD, SAMPLE_USERS, seedDatabase } from '../src/seed.js';
+
+const FIXTURE_USERS = [
+  {
+    name: 'Fixture Parent',
+    email: 'parent.fixture@example.com',
+    password: 'ParentPass!101',
+    role: 'parent',
+  },
+  {
+    name: 'Fixture Specialist',
+    email: 'specialist.fixture@example.com',
+    password: 'SpecPass!202',
+    role: 'specialist',
+  },
+  {
+    name: 'Fixture Child',
+    email: 'child.fixture@example.com',
+    password: 'ChildPass!303',
+    role: 'child',
+  },
+];
 
 /**
- * Mount sample role-guarded endpoints in front of the real Express app so M1 tests
- * can exercise POST /api/auth/login -> JWT -> requireAuth -> requireRole end-to-end.
+ * Insert a synthetic user with a bcrypt-hashed password into the test SQLite DB.
  */
-function buildM1TestApp() {
+async function insertTestUser(db, { name, email, password, role }) {
+  const passwordHash = await bcrypt.hash(password, 8);
+  const result = db
+    .prepare('INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)')
+    .run(name, email.trim().toLowerCase(), passwordHash, role);
+
+  return {
+    id: Number(result.lastInsertRowid),
+    name,
+    email: email.trim().toLowerCase(),
+    role,
+  };
+}
+
+/**
+ * Mount sample role-guarded endpoints in front of the real Express app so API tests
+ * exercise POST /api/auth/login -> JWT -> requireAuth -> requireRole end-to-end.
+ */
+function createGuardedApp() {
   const testApp = express();
   testApp.use(express.json());
 
@@ -44,12 +82,13 @@ function buildM1TestApp() {
   return testApp;
 }
 
-describe('M1 API integration: login, missing token (401), and role guard (403) (WEB-39)', () => {
-  const testApp = buildM1TestApp();
+describe('API login, authentication (401), and role guard (403) (WEB-39)', () => {
+  const testApp = createGuardedApp();
   let db;
+  const usersByRole = {};
   const tokensByRole = {};
 
-  async function loginViaApi(email, password = DEFAULT_SEED_PASSWORD, extraBody = {}) {
+  async function loginViaApi(email, password, extraBody = {}) {
     return request(testApp)
       .post('/api/auth/login')
       .send({ email, password, ...extraBody });
@@ -58,15 +97,15 @@ describe('M1 API integration: login, missing token (401), and role guard (403) (
   beforeAll(async () => {
     db = openDatabase(':memory:');
     setDatabase(db);
-    await seedDatabase(db);
 
-    const parentLogin = await loginViaApi('ayse.demir@example.com');
-    const specialistLogin = await loginViaApi('mehmet.kaya@example.com');
-    const childLogin = await loginViaApi('deniz.demir@example.com');
-
-    tokensByRole.parent = parentLogin.body.token;
-    tokensByRole.specialist = specialistLogin.body.token;
-    tokensByRole.child = childLogin.body.token;
+    for (const fixture of FIXTURE_USERS) {
+      usersByRole[fixture.role] = {
+        ...(await insertTestUser(db, fixture)),
+        password: fixture.password,
+      };
+      const loginRes = await loginViaApi(fixture.email, fixture.password);
+      tokensByRole[fixture.role] = loginRes.body.token;
+    }
   });
 
   afterAll(() => {
@@ -77,10 +116,10 @@ describe('M1 API integration: login, missing token (401), and role guard (403) (
   });
 
   describe('Successful login and session lifecycle (FR-M1-01, FR-M1-04, FR-M1-06)', () => {
-    it.each(SAMPLE_USERS)(
-      'logs in seeded $role ($email) and uses returned JWT on /me and /logout',
-      async ({ name, email, role }) => {
-        const loginRes = await loginViaApi(email);
+    it.each(FIXTURE_USERS)(
+      'logs in $role ($email) with distinct password and uses returned JWT on /me and /logout',
+      async ({ name, email, password, role }) => {
+        const loginRes = await loginViaApi(email, password);
 
         expect(loginRes.status).toBe(200);
         expect(typeof loginRes.body.token).toBe('string');
@@ -108,10 +147,35 @@ describe('M1 API integration: login, missing token (401), and role guard (403) (
       }
     );
 
+    it('authenticates newly created database accounts without relying on seed accounts', async () => {
+      const dynamicUser = {
+        name: 'Dynamic Specialist',
+        email: 'dynamic.specialist@example.com',
+        password: 'FreshDbUser!999',
+        role: 'specialist',
+      };
+      const inserted = await insertTestUser(db, dynamicUser);
+
+      const loginRes = await loginViaApi(dynamicUser.email, dynamicUser.password);
+      expect(loginRes.status).toBe(200);
+      expect(loginRes.body.user).toEqual(inserted);
+
+      const allowedRes = await request(testApp)
+        .get('/api/test-guards/specialist-only')
+        .set('Authorization', `Bearer ${loginRes.body.token}`);
+      expect(allowedRes.status).toBe(200);
+      expect(allowedRes.body).toMatchObject({ role: 'specialist', userId: inserted.id });
+
+      const forbiddenRes = await request(testApp)
+        .get('/api/test-guards/parent-only')
+        .set('Authorization', `Bearer ${loginRes.body.token}`);
+      expect(forbiddenRes.status).toBe(403);
+      expect(forbiddenRes.body).toEqual({ error: 'Forbidden: insufficient permissions.' });
+    });
+
     it('cannot elevate role via login payload and still hits 403 on parent endpoints (FR-M1-03)', async () => {
-      const loginRes = await loginViaApi('deniz.demir@example.com', DEFAULT_SEED_PASSWORD, {
-        role: 'parent',
-      });
+      const child = usersByRole.child;
+      const loginRes = await loginViaApi(child.email, child.password, { role: 'parent' });
 
       expect(loginRes.status).toBe(200);
       expect(loginRes.body.user.role).toBe('child');
@@ -128,10 +192,10 @@ describe('M1 API integration: login, missing token (401), and role guard (403) (
   describe('Wrong password and invalid login payloads (FR-M1-02)', () => {
     it.each([
       { label: 'completely wrong password', password: 'wrong-password' },
-      { label: 'wrong password casing', password: 'Password123' },
-      { label: 'trailing whitespace in password', password: `${DEFAULT_SEED_PASSWORD} ` },
+      { label: 'wrong password casing', password: 'parentpass!101' },
+      { label: 'trailing whitespace in password', password: 'ParentPass!101 ' },
     ])('returns 401 without issuing a token for $label', async ({ password }) => {
-      const response = await loginViaApi('ayse.demir@example.com', password);
+      const response = await loginViaApi(usersByRole.parent.email, password);
 
       expect(response.status).toBe(401);
       expect(response.body).toEqual({ error: 'Wrong email or password.' });
@@ -147,8 +211,8 @@ describe('M1 API integration: login, missing token (401), and role guard (403) (
     });
 
     it.each([
-      { email: 12345, password: DEFAULT_SEED_PASSWORD },
-      { email: 'ayse.demir@example.com', password: 12345 },
+      { email: 12345, password: 'some-password' },
+      { email: 'parent.fixture@example.com', password: 12345 },
       { email: null, password: null },
     ])('returns 400 when email or password has a non-string type: %j', async (payload) => {
       const response = await request(testApp).post('/api/auth/login').send(payload);
@@ -163,7 +227,7 @@ describe('M1 API integration: login, missing token (401), and role guard (403) (
       setDatabase(brokenDb);
 
       try {
-        const response = await loginViaApi('ayse.demir@example.com');
+        const response = await loginViaApi(usersByRole.parent.email, usersByRole.parent.password);
         expect(response.status).toBe(500);
         expect(response.body).toEqual({ error: 'Internal server error' });
       } finally {
@@ -215,8 +279,9 @@ describe('M1 API integration: login, missing token (401), and role guard (403) (
     );
 
     it('returns 401 for a JWT signed with the wrong secret', async () => {
+      const parent = usersByRole.parent;
       const foreignToken = jwt.sign(
-        { id: 1, email: 'ayse.demir@example.com', name: 'Ayşe Demir', role: 'parent' },
+        { id: parent.id, email: parent.email, name: parent.name, role: parent.role },
         'wrong-signing-secret',
         { expiresIn: '1h' }
       );
@@ -230,9 +295,10 @@ describe('M1 API integration: login, missing token (401), and role guard (403) (
     });
 
     it('returns 401 before requireRole when a JWT is expired', async () => {
+      const child = usersByRole.child;
       const secret = process.env.JWT_SECRET || 'dev-secret-change-in-production';
       const expiredChildToken = jwt.sign(
-        { id: 5, email: 'deniz.demir@example.com', name: 'Deniz Demir', role: 'child' },
+        { id: child.id, email: child.email, name: child.name, role: child.role },
         secret,
         { expiresIn: '-10s' }
       );
