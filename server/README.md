@@ -10,6 +10,7 @@ Node.js + Express backend with SQLite.
 - `GET /api/auth/me` – Protected (`Bearer <token>`); returns the logged-in user's profile `{ id, name, email, role }`.
 - `POST /api/auth/logout` – Protected (`Bearer <token>`); returns `{ message: "Logged out." }`.
 - `GET /api/children` – Protected (`parent`); returns child profiles owned by the logged-in parent.
+- `GET /api/children/:childId` – Protected (`requireChildAccess`: owning parent, actively linked specialist, or the child's own account); returns the child profile (`403` otherwise, `FR-M2-06`).
 - `GET /api/children/:childId/specialists` – Protected (`parent`); returns specialists actively linked to the child.
 - `POST /api/children/:childId/specialists` – Protected (`parent`); links a registered specialist by `{ email, specialistType }` (`404` if not a registered specialist).
 - `DELETE /api/children/:childId/specialists/:specialistId` – Protected (`parent`); marks the active specialist link inactive (`204 No Content`).

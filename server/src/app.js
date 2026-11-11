@@ -6,6 +6,7 @@ import authRouter from './routes/auth.js';
 import childrenRouter from './routes/children.js';
 import specialistsRouter from './routes/specialists.js';
 import { requireAuth } from './middleware/auth.js';
+import { requireChildAccess } from './middleware/childAccess.js';
 
 const app = express();
 
@@ -47,7 +48,8 @@ app.use('/api/auth', authRouter);
 app.use('/api', apiLimiter);
 app.use('/api', requireAuth);
 
-// M2: Children and specialist-linking routes
+// M2: Child access guard (FR-M2-06) + children and specialist-linking routes
+app.use('/api/children/:childId', requireChildAccess('parent', 'specialist', 'child'));
 app.use('/api/children', childrenRouter);
 app.use('/api/specialist', specialistsRouter);
 

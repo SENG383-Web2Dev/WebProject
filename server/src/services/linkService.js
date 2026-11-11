@@ -9,7 +9,9 @@ export const SPECIALIST_TYPES = [
   'Coach',
 ];
 
-function parsePositiveId(value, label) {
+const DEFAULT_ALLOWED_ROLES = ['parent', 'specialist'];
+
+export function parsePositiveId(value, label) {
   const normalized = String(value ?? '').trim();
   if (!/^[1-9]\d*$/.test(normalized)) {
     throw new HttpError(400, `Invalid ${label}.`);
@@ -21,7 +23,7 @@ function parsePositiveId(value, label) {
   return parsed;
 }
 
-function mapChildRow(row) {
+export function mapChildRow(row) {
   return {
     id: row.id,
     parentId: row.parent_id,
@@ -79,12 +81,18 @@ function findLinkedSpecialistById(db, linkId) {
 }
 
 /**
- * Verify that the target child exists and belongs to the requesting parent.
+ * Verify that the requesting user is allowed to access the specified child (FR-M2-06).
+ * Allows the child's owning parent, a specialist with an active link, or (when permitted) the child's own account.
  * @param {import('node:sqlite').DatabaseSync} db
+ * @param {{ id: number, role: string } | undefined | null} user
  * @param {number|string} rawChildId
- * @param {number} parentId
+ * @param {string[]} [allowedRoles]
  */
-export function assertParentOwnsChild(db, rawChildId, parentId) {
+export function verifyChildAccess(db, user, rawChildId, allowedRoles = DEFAULT_ALLOWED_ROLES) {
+  if (!user) {
+    throw new HttpError(401, 'Authentication required.');
+  }
+
   const childId = parsePositiveId(rawChildId, 'child id');
   const child = db
     .prepare('SELECT id, parent_id, child_account_id, name, birth_date FROM children WHERE id = ?')
@@ -94,11 +102,50 @@ export function assertParentOwnsChild(db, rawChildId, parentId) {
     throw new HttpError(404, 'Child not found.');
   }
 
-  if (child.parent_id !== parentId) {
-    throw new HttpError(403, 'Forbidden: you do not have access to this child.');
+  if (!allowedRoles.includes(user.role)) {
+    throw new HttpError(403, 'Forbidden: insufficient permissions.');
   }
 
-  return child;
+  if (user.role === 'parent') {
+    if (child.parent_id !== user.id) {
+      throw new HttpError(403, 'Forbidden: you do not have access to this child.');
+    }
+    return { child, specialistLink: null };
+  }
+
+  if (user.role === 'specialist') {
+    const specialistLink = db
+      .prepare(
+        `SELECT id, specialist_type
+         FROM specialist_links
+         WHERE child_id = ? AND specialist_id = ? AND active = 1`
+      )
+      .get(child.id, user.id);
+
+    if (!specialistLink) {
+      throw new HttpError(403, 'You do not have access to this child.');
+    }
+    return { child, specialistLink };
+  }
+
+  if (user.role === 'child') {
+    if (child.child_account_id !== user.id) {
+      throw new HttpError(403, 'Forbidden: you do not have access to this child.');
+    }
+    return { child, specialistLink: null };
+  }
+
+  throw new HttpError(403, 'Forbidden: you do not have access to this child.');
+}
+
+/**
+ * Verify that the target child exists and belongs to the requesting parent.
+ * @param {import('node:sqlite').DatabaseSync} db
+ * @param {number|string} rawChildId
+ * @param {number} parentId
+ */
+export function assertParentOwnsChild(db, rawChildId, parentId) {
+  return verifyChildAccess(db, { id: parentId, role: 'parent' }, rawChildId, ['parent']).child;
 }
 
 /**
@@ -257,3 +304,4 @@ export function listSpecialistChildren(specialistId) {
 
   return rows.map(mapSpecialistChildRow);
 }
+
