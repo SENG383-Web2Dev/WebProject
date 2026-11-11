@@ -2,13 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import { getDatabase } from './db.js';
 import authRouter from './routes/auth.js';
+import { requireAuth } from './middleware/auth.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Health check endpoint
+// Public endpoints (no JWT required)
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
@@ -17,7 +18,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Walking skeleton: sample tasks endpoint (WEB-30)
+// Walking skeleton: sample tasks endpoint (WEB-30, removed once M4 replaces it)
 app.get('/api/tasks', (req, res) => {
   try {
     const db = getDatabase();
@@ -28,8 +29,16 @@ app.get('/api/tasks', (req, res) => {
   }
 });
 
-// M1: Authentication routes (WEB-36)
+// M1: Authentication routes (login is public; /me and /logout require JWT)
 app.use('/api/auth', authRouter);
+
+// Require a valid JWT on every other /api endpoint (FR-M1-04, NFR-02)
+app.use('/api', requireAuth);
+
+// Protected API fallback for unmatched routes
+app.use('/api', (req, res) => {
+  res.status(404).json({ error: 'Not found.' });
+});
 
 // Centralized API error handler
 app.use((err, req, res, _next) => {
