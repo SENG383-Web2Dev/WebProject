@@ -9,6 +9,14 @@ const SCHEMA = `
     done INTEGER NOT NULL DEFAULT 0 CHECK (done IN (0, 1)),
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
   );
+
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE COLLATE NOCASE,
+    password_hash TEXT NOT NULL,
+    role TEXT NOT NULL CHECK (role IN ('parent', 'specialist', 'child'))
+  );
 `;
 
 export function openDatabase(path = process.env.DB_PATH || './data/app.db') {

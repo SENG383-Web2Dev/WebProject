@@ -36,3 +36,49 @@ describe('tasks table', () => {
     db.close();
   });
 });
+
+describe('users table', () => {
+  it('is created with the expected columns', () => {
+    const db = openDatabase(':memory:');
+    const columns = db.prepare('PRAGMA table_info(users)').all().map((c) => c.name);
+
+    expect(columns).toEqual(['id', 'name', 'email', 'password_hash', 'role']);
+    db.close();
+  });
+
+  it('allows valid roles: parent, specialist, and child', () => {
+    const db = openDatabase(':memory:');
+    const insert = db.prepare(
+      'INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)'
+    );
+
+    insert.run('Parent User', 'parent@example.com', 'hash1', 'parent');
+    insert.run('Specialist User', 'spec@example.com', 'hash2', 'specialist');
+    insert.run('Child User', 'child@example.com', 'hash3', 'child');
+
+    const roles = db.prepare('SELECT role FROM users ORDER BY id ASC').all().map((r) => r.role);
+    expect(roles).toEqual(['parent', 'specialist', 'child']);
+    db.close();
+  });
+
+  it('rejects an invalid role', () => {
+    const db = openDatabase(':memory:');
+    const insert = db.prepare(
+      'INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)'
+    );
+
+    expect(() => insert.run('Admin', 'admin@example.com', 'hash', 'admin')).toThrow();
+    db.close();
+  });
+
+  it('enforces unique email addresses case-insensitively', () => {
+    const db = openDatabase(':memory:');
+    const insert = db.prepare(
+      'INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)'
+    );
+
+    insert.run('Ayse', 'ayse.demir@example.com', 'hash1', 'parent');
+    expect(() => insert.run('Ayse 2', 'AYSE.DEMIR@example.com', 'hash2', 'parent')).toThrow();
+    db.close();
+  });
+});
