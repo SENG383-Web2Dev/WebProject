@@ -1,5 +1,13 @@
 export const TOKEN_STORAGE_KEY = 'auth_token'
 
+export const SPECIALIST_TYPES = [
+  'Teacher',
+  'Psychologist',
+  'Doctor',
+  'Special education teacher',
+  'Coach',
+]
+
 /**
  * Custom error carrying an HTTP status code from API responses.
  */
@@ -91,4 +99,33 @@ export function fetchMeRequest() {
 
 export function logoutRequest() {
   return apiFetch('/api/auth/logout', { method: 'POST' })
+}
+
+export function fetchParentChildrenRequest() {
+  return apiFetch('/api/children')
+}
+
+export function fetchChildProfileRequest(childId) {
+  return apiFetch(`/api/children/${childId}`)
+}
+
+export function fetchChildSpecialistsRequest(childId) {
+  return apiFetch(`/api/children/${childId}/specialists`)
+}
+
+export function linkSpecialistRequest(childId, { email, specialistType }) {
+  return apiFetch(`/api/children/${childId}/specialists`, {
+    method: 'POST',
+    body: { email, specialistType },
+  })
+}
+
+export function unlinkSpecialistRequest(childId, specialistId) {
+  return apiFetch(`/api/children/${childId}/specialists/${specialistId}`, {
+    method: 'DELETE',
+  })
+}
+
+export function fetchSpecialistChildrenRequest() {
+  return apiFetch('/api/specialist/children')
 }
