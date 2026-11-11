@@ -7,6 +7,10 @@ Node.js + Express backend with SQLite.
 - `GET /api/health` – Health check endpoint returning `{ status: "ok", uptime, timestamp }`.
 - `GET /api/tasks` – Walking skeleton tasks endpoint returning sample tasks from SQLite as JSON (`id`, `title`, `done`, `created_at`).
 - `POST /api/auth/login` – Authenticate with `{ email, password }`; returns `{ token, user: { id, name, email, role } }` or `401`/`400` `{ error }`.
+- `GET /api/auth/me` – Protected (`Bearer <token>`); returns the logged-in user's profile `{ id, name, email, role }`.
+- `POST /api/auth/logout` – Protected (`Bearer <token>`); returns `{ message: "Logged out." }`.
+
+All other `/api/*` endpoints require a valid `Authorization: Bearer <token>` header (`requireAuth` -> `401` on missing/invalid token) and can restrict roles via `requireRole(...roles)` (`403` when role is not allowed).
 
 ## Running Locally
 

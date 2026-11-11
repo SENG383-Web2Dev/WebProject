@@ -88,3 +88,22 @@ export async function loginUser(email, password) {
     user: publicUser,
   };
 }
+
+/**
+ * Retrieve the authenticated user's public profile from the database.
+ * @param {number} userId
+ * @returns {{ id: number, name: string, email: string, role: string }}
+ */
+export function getCurrentUser(userId) {
+  const db = getDatabase();
+  const user = db
+    .prepare('SELECT id, name, email, role FROM users WHERE id = ?')
+    .get(userId);
+
+  if (!user) {
+    throw new HttpError(404, 'User not found.');
+  }
+
+  return user;
+}
+
