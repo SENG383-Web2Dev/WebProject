@@ -1,41 +1,8 @@
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { DatabaseSync } from 'node:sqlite';
 import { openDatabase } from '../src/db.js';
-
-describe('tasks table', () => {
-  it('is created with the expected columns', () => {
-    const db = openDatabase(':memory:');
-    const columns = db.prepare('PRAGMA table_info(tasks)').all().map((c) => c.name);
-
-    expect(columns).toEqual(['id', 'title', 'done', 'created_at']);
-    db.close();
-  });
-
-  it('stores a task with done defaulting to 0 and a created_at timestamp', () => {
-    const db = openDatabase(':memory:');
-    db.prepare('INSERT INTO tasks (title) VALUES (?)').run('Write a test');
-
-    const task = db.prepare('SELECT * FROM tasks').get();
-    expect(task.title).toBe('Write a test');
-    expect(task.done).toBe(0);
-    expect(task.created_at).toBeDefined();
-    db.close();
-  });
-
-  it('rejects a task without a title', () => {
-    const db = openDatabase(':memory:');
-
-    expect(() => db.prepare('INSERT INTO tasks (title) VALUES (?)').run(null)).toThrow();
-    db.close();
-  });
-
-  it('rejects a done value other than 0 or 1', () => {
-    const db = openDatabase(':memory:');
-
-    expect(() =>
-      db.prepare('INSERT INTO tasks (title, done) VALUES (?, ?)').run('Bad', 2)
-    ).toThrow();
-    db.close();
-  });
-});
 
 describe('users table', () => {
   it('is created with the expected columns', () => {
@@ -157,5 +124,88 @@ describe('children and specialist_links tables', () => {
     ).toThrow();
 
     db.close();
+  });
+});
+
+describe('tasks table (WEB-47)', () => {
+  function createChildRecord(db) {
+    const insertUser = db.prepare(
+      'INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)'
+    );
+    const parentId = Number(insertUser.run('Parent', 'p@example.com', 'hash', 'parent').lastInsertRowid);
+    const childId = Number(
+      db
+        .prepare('INSERT INTO children (parent_id, name, birth_date) VALUES (?, ?, ?)')
+        .run(parentId, 'Kid One', '2019-03-10').lastInsertRowid
+    );
+    return { parentId, childId };
+  }
+
+  it('is created with the TASK columns from the SDD', () => {
+    const db = openDatabase(':memory:');
+    const columns = db.prepare('PRAGMA table_info(tasks)').all().map((c) => c.name);
+
+    expect(columns).toEqual([
+      'id',
+      'child_id',
+      'assigned_by',
+      'title',
+      'description',
+      'development_area',
+      'due_date',
+      'status',
+      'done_at',
+      'created_at',
+    ]);
+    db.close();
+  });
+
+  it('stores a task as pending with no done time by default', () => {
+    const db = openDatabase(':memory:');
+    const { parentId, childId } = createChildRecord(db);
+    db.prepare(
+      'INSERT INTO tasks (child_id, assigned_by, title, development_area, due_date) VALUES (?, ?, ?, ?, ?)'
+    ).run(childId, parentId, 'Read a book', 'Language', '2026-11-18');
+
+    const task = db.prepare('SELECT status, done_at, created_at FROM tasks').get();
+    expect(task.status).toBe('pending');
+    expect(task.done_at).toBeNull();
+    expect(task.created_at).toBeDefined();
+    db.close();
+  });
+
+  it('rejects an unknown status, a missing title and a missing child', () => {
+    const db = openDatabase(':memory:');
+    const { parentId, childId } = createChildRecord(db);
+    const insert = db.prepare(
+      'INSERT INTO tasks (child_id, assigned_by, title, development_area, due_date, status) VALUES (?, ?, ?, ?, ?, ?)'
+    );
+
+    expect(() => insert.run(childId, parentId, 'Bad', 'Language', '2026-11-18', 'started')).toThrow();
+    expect(() => insert.run(childId, parentId, null, 'Language', '2026-11-18', 'pending')).toThrow();
+    expect(() => insert.run(9999, parentId, 'No child', 'Language', '2026-11-18', 'pending')).toThrow();
+    db.close();
+  });
+
+  it('replaces the WEB-23 sample tasks table in an existing database file', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'web47-'));
+    const path = join(dir, 'old.db');
+    const oldDb = new DatabaseSync(path);
+    oldDb.exec(`CREATE TABLE tasks (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      done INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );`);
+    oldDb.prepare('INSERT INTO tasks (title) VALUES (?)').run('Old sample task');
+    oldDb.close();
+
+    const db = openDatabase(path);
+    const columns = db.prepare('PRAGMA table_info(tasks)').all().map((c) => c.name);
+    expect(columns).toContain('child_id');
+    expect(columns).not.toContain('done');
+    expect(db.prepare('SELECT COUNT(*) AS count FROM tasks').get().count).toBe(0);
+    db.close();
+    rmSync(dir, { recursive: true, force: true });
   });
 });

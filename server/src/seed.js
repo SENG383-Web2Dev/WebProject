@@ -8,12 +8,6 @@ const BCRYPT_ROUNDS = 10;
 
 export const DEFAULT_SEED_PASSWORD = 'password123';
 
-export const SAMPLE_TASKS = [
-  'Set up the development environment',
-  'Read the SRS document',
-  'Try the health endpoint at GET /api/health',
-];
-
 // Synthetic personas matching SDD wireframes (no real user data)
 export const SAMPLE_USERS = [
   { name: 'Ayşe Demir', email: 'ayse.demir@example.com', role: 'parent' },
@@ -47,22 +41,53 @@ export const SAMPLE_SPECIALIST_LINKS = [
   },
 ];
 
+// Synthetic M4 tasks for the sample child (FR-M4-01), due in the week of the v0.1 demo (16-22 Nov 2026).
+// One task is already done so that both statuses can be shown (FR-M4-04).
+export const SAMPLE_TASKS = [
+  {
+    childName: 'Deniz Demir',
+    assignedByEmail: 'mehmet.kaya@example.com',
+    title: 'Finish a 24-piece puzzle',
+    description: 'Complete the animal puzzle without help.',
+    developmentArea: 'Cognitive',
+    dueDate: '2026-11-17',
+    status: 'done',
+  },
+  {
+    childName: 'Deniz Demir',
+    assignedByEmail: 'mehmet.kaya@example.com',
+    title: 'Read a picture book aloud',
+    description: 'Read one short picture book aloud to a parent.',
+    developmentArea: 'Language',
+    dueDate: '2026-11-18',
+    status: 'pending',
+  },
+  {
+    childName: 'Deniz Demir',
+    assignedByEmail: 'ayse.demir@example.com',
+    title: 'Button up your own shirt',
+    description: 'Button the school shirt in the morning before breakfast.',
+    developmentArea: 'Self-care',
+    dueDate: '2026-11-19',
+    status: 'pending',
+  },
+  {
+    childName: 'Deniz Demir',
+    assignedByEmail: 'zeynep.arslan@example.com',
+    title: 'Play a turn-taking board game',
+    description: 'Play one board game with a family member and wait for your turn.',
+    developmentArea: 'Social-emotional',
+    dueDate: '2026-11-20',
+    status: 'pending',
+  },
+];
+
 /**
- * Populate sample tasks, synthetic seed users, child profiles, and initial specialist links (idempotent).
+ * Populate synthetic seed users, child profiles, initial specialist links, and sample tasks (idempotent).
  * @param {import('node:sqlite').DatabaseSync} db
  * @returns {Promise<{ tasksInserted: number, usersInserted: number, childrenInserted: number, linksInserted: number }>}
  */
 export async function seedDatabase(db) {
-  let tasksInserted = 0;
-  const { count: taskCount } = db.prepare('SELECT COUNT(*) AS count FROM tasks').get();
-  if (taskCount === 0) {
-    const insertTask = db.prepare('INSERT INTO tasks (title) VALUES (?)');
-    for (const title of SAMPLE_TASKS) {
-      insertTask.run(title);
-      tasksInserted += 1;
-    }
-  }
-
   let usersInserted = 0;
   const findUser = db.prepare('SELECT id FROM users WHERE email = ?');
   const insertUser = db.prepare(
@@ -115,6 +140,35 @@ export async function seedDatabase(db) {
       if (childRow && specialist) {
         insertLink.run(childRow.id, specialist.id, link.specialistType);
         linksInserted += 1;
+      }
+    }
+  }
+
+  // Tasks need the child and the assigning user, so they are seeded last
+  let tasksInserted = 0;
+  const { count: taskCount } = db.prepare('SELECT COUNT(*) AS count FROM tasks').get();
+  if (taskCount === 0) {
+    const findChildByName = db.prepare('SELECT id FROM children WHERE name = ?');
+    const insertTask = db.prepare(
+      `INSERT INTO tasks (child_id, assigned_by, title, description, development_area, due_date, status, done_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    );
+
+    for (const task of SAMPLE_TASKS) {
+      const childRow = findChildByName.get(task.childName);
+      const assigner = findUser.get(task.assignedByEmail.trim().toLowerCase());
+      if (childRow && assigner) {
+        insertTask.run(
+          childRow.id,
+          assigner.id,
+          task.title,
+          task.description,
+          task.developmentArea,
+          task.dueDate,
+          task.status,
+          task.status === 'done' ? `${task.dueDate} 17:00:00` : null
+        );
+        tasksInserted += 1;
       }
     }
   }

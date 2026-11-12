@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
-import { getDatabase } from './db.js';
 import authRouter from './routes/auth.js';
 import childrenRouter from './routes/children.js';
 import specialistsRouter from './routes/specialists.js';
 import eventsRouter from './routes/events.js';
+import tasksRouter from './routes/tasks.js';
 import { requireAuth } from './middleware/auth.js';
 import { requireChildAccess } from './middleware/childAccess.js';
 
@@ -31,17 +31,6 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Walking skeleton: sample tasks endpoint (WEB-30, removed once M4 replaces it)
-app.get('/api/tasks', (req, res) => {
-  try {
-    const db = getDatabase();
-    const tasks = db.prepare('SELECT id, title, done, created_at FROM tasks ORDER BY id ASC').all();
-    res.status(200).json(tasks);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch tasks' });
-  }
-});
-
 // M1: Authentication routes (login is public; /me and /logout require JWT)
 app.use('/api/auth', authRouter);
 
@@ -56,6 +45,9 @@ app.use('/api/specialist', specialistsRouter);
 
 // M3 Weekly schedule (WEB-44)
 app.use('/api', eventsRouter);
+
+// M4 Tasks (WEB-47); replaces the walking-skeleton GET /api/tasks
+app.use('/api', tasksRouter);
 
 // Protected API fallback for unmatched routes
 app.use('/api', (req, res) => {
