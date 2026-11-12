@@ -5,6 +5,7 @@ import { getDatabase } from './db.js';
 import authRouter from './routes/auth.js';
 import childrenRouter from './routes/children.js';
 import specialistsRouter from './routes/specialists.js';
+import eventsRouter from './routes/events.js';
 import { requireAuth } from './middleware/auth.js';
 import { requireChildAccess } from './middleware/childAccess.js';
 
@@ -52,6 +53,9 @@ app.use('/api', requireAuth);
 app.use('/api/children/:childId', requireChildAccess('parent', 'specialist', 'child'));
 app.use('/api/children', childrenRouter);
 app.use('/api/specialist', specialistsRouter);
+
+// M3 Weekly schedule (WEB-44)
+app.use('/api', eventsRouter);
 
 // Protected API fallback for unmatched routes
 app.use('/api', (req, res) => {

@@ -35,6 +35,17 @@ const SCHEMA = `
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     UNIQUE (child_id, specialist_id)
   );
+
+  CREATE TABLE IF NOT EXISTS events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    child_id INTEGER NOT NULL REFERENCES children(id) ON DELETE CASCADE,
+    created_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    title TEXT NOT NULL,
+    start_time TEXT NOT NULL,
+    end_time TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    CHECK (end_time > start_time)
+  );
 `;
 
 export function openDatabase(path = process.env.DB_PATH || './data/app.db') {
@@ -60,4 +71,3 @@ export function getDatabase() {
 export function setDatabase(db) {
   currentDb = db;
 }
-

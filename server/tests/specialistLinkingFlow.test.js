@@ -430,8 +430,12 @@ describe('M2 specialist linking API flow & 403 after unlink (WEB-43)', () => {
       expect(allowedBeforeUnlink.status).toBe(200);
       expect(allowedBeforeUnlink.body.id).toBe(world.child.id);
 
-      const subRouteBeforeUnlink = await authGet(`/api/children/${world.child.id}/events`, specToken);
-      expect(subRouteBeforeUnlink.status).toBe(404);
+      // M3 events endpoint (WEB-44) is implemented, so a linked specialist gets 200
+      const subRouteBeforeUnlink = await authGet(
+        `/api/children/${world.child.id}/events?week=2026-11-09`,
+        specToken
+      );
+      expect(subRouteBeforeUnlink.status).toBe(200);
 
       const unlinkRes = await authDelete(
         `/api/children/${world.child.id}/specialists/${world.specialistOne.id}`,
