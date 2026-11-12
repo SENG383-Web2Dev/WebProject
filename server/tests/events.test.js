@@ -272,3 +272,35 @@ describe('Events API (M3)', () => {
     });
   });
 });
+describe('GET /api/auth/me for a child account (WEB-45)', () => {
+  let db;
+
+  beforeEach(() => {
+    db = openDatabase(':memory:');
+    setDatabase(db);
+  });
+
+  afterEach(() => {
+    db.close();
+    setDatabase(null);
+  });
+
+  it("returns the child's own profile id so the client can load the schedule", async () => {
+    const insertUser = db.prepare('INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)');
+    const parentId = Number(insertUser.run('Parent', 'p@example.com', 'x', 'parent').lastInsertRowid);
+    const kidId = Number(insertUser.run('Kid', 'k@example.com', 'x', 'child').lastInsertRowid);
+    const profileId = Number(
+      db.prepare('INSERT INTO children (parent_id, child_account_id, name) VALUES (?, ?, ?)').run(parentId, kidId, 'Kid')
+        .lastInsertRowid
+    );
+
+    const kidToken = signToken({ id: kidId, name: 'Kid', email: 'k@example.com', role: 'child' });
+    const res = await request(app).get('/api/auth/me').set('Authorization', `Bearer ${kidToken}`);
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({ id: kidId, role: 'child', childProfileId: profileId });
+
+    const parentToken = signToken({ id: parentId, name: 'Parent', email: 'p@example.com', role: 'parent' });
+    const parentRes = await request(app).get('/api/auth/me').set('Authorization', `Bearer ${parentToken}`);
+    expect(parentRes.body.childProfileId).toBeUndefined();
+  });
+});

@@ -1,11 +1,47 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth.js'
+import { fetchParentChildrenRequest } from '../api/client.js'
+import WeeklySchedule from '../components/WeeklySchedule.jsx'
 
 /**
  * Parent home workspace showing child schedule, tasks, observations, and specialist link shortcut.
  */
 function ParentDashboardPage() {
   const { user } = useAuth()
+  const [children, setChildren] = useState([])
+  const [selectedChildId, setSelectedChildId] = useState(null)
+  const [loadingChildren, setLoadingChildren] = useState(true)
+  const [childrenError, setChildrenError] = useState('')
+
+  useEffect(() => {
+    let ignore = false
+
+    async function loadChildren() {
+      setLoadingChildren(true)
+      setChildrenError('')
+      try {
+        const data = await fetchParentChildrenRequest()
+        if (!ignore) {
+          setChildren(data)
+          setSelectedChildId(data[0]?.id ?? null)
+        }
+      } catch (error) {
+        if (!ignore) {
+          setChildrenError(error.message || 'Could not load children.')
+        }
+      } finally {
+        if (!ignore) {
+          setLoadingChildren(false)
+        }
+      }
+    }
+
+    loadChildren()
+    return () => {
+      ignore = true
+    }
+  }, [])
 
   return (
     <section className="page-container">
@@ -19,11 +55,43 @@ function ParentDashboardPage() {
         </Link>
       </div>
 
-      <div className="card-grid">
-        <div className="page-card">
-          <h2>Weekly Schedule</h2>
-          <p className="card-text">View and manage your child&apos;s weekly calendar events.</p>
+      {childrenError && (
+        <p className="alert-error" role="alert">
+          {childrenError}
+        </p>
+      )}
+
+      {children.length > 1 && (
+        <div className="child-switcher">
+          <label htmlFor="dashboard-child-select">Child</label>
+          <select
+            id="dashboard-child-select"
+            value={selectedChildId ?? ''}
+            onChange={(event) => setSelectedChildId(Number(event.target.value))}
+          >
+            {children.map((child) => (
+              <option key={child.id} value={child.id}>
+                {child.name}
+              </option>
+            ))}
+          </select>
         </div>
+      )}
+
+      <div className="page-card">
+        {loadingChildren ? (
+          <p className="card-text">Loading...</p>
+        ) : selectedChildId ? (
+          <WeeklySchedule key={selectedChildId} childId={selectedChildId} currentUserId={user?.id} canEdit />
+        ) : (
+          <>
+            <h2>Weekly Schedule</h2>
+            <p className="card-text">No child profile is linked to your account yet.</p>
+          </>
+        )}
+      </div>
+
+      <div className="card-grid">
         <div className="page-card">
           <h2>Tasks</h2>
           <p className="card-text">Assign daily tasks and follow completion status.</p>

@@ -104,6 +104,14 @@ export function getCurrentUser(userId) {
     throw new HttpError(404, 'User not found.');
   }
 
+  // A child account also gets its own child profile id, so the client can load its schedule (SDD section 4)
+  if (user.role === 'child') {
+    const profile = db.prepare('SELECT id FROM children WHERE child_account_id = ?').get(user.id);
+    if (profile) {
+      return { ...user, childProfileId: profile.id };
+    }
+  }
+
   return user;
 }
 
