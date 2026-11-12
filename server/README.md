@@ -9,6 +9,11 @@ Node.js + Express backend with SQLite.
 - `POST /api/auth/login` – Authenticate with `{ email, password }`; returns `{ token, user: { id, name, email, role } }` or `401`/`400` `{ error }`.
 - `GET /api/auth/me` – Protected (`Bearer <token>`); returns the logged-in user's profile `{ id, name, email, role }`.
 - `POST /api/auth/logout` – Protected (`Bearer <token>`); returns `{ message: "Logged out." }`.
+- `GET /api/children` – Protected (`parent`); returns child profiles owned by the logged-in parent.
+- `GET /api/children/:childId/specialists` – Protected (`parent`); returns specialists actively linked to the child.
+- `POST /api/children/:childId/specialists` – Protected (`parent`); links a registered specialist by `{ email, specialistType }` (`404` if not a registered specialist).
+- `DELETE /api/children/:childId/specialists/:specialistId` – Protected (`parent`); marks the active specialist link inactive (`204 No Content`).
+- `GET /api/specialist/children` – Protected (`specialist`); returns children actively linked to the logged-in specialist.
 
 All other `/api/*` endpoints require a valid `Authorization: Bearer <token>` header (`requireAuth` -> `401` on missing/invalid token) and can restrict roles via `requireRole(...roles)` (`403` when role is not allowed).
 
@@ -41,8 +46,10 @@ All other `/api/*` endpoints require a valid `Authorization: Bearer <token>` hea
 - The database file is set by `DB_PATH` in `.env` (default `./data/app.db`). The file is git-ignored.
 - `src/db.js` exports `openDatabase()`, which creates the tables if they do not exist:
   - `users`: `id`, `name`, `email` (unique, case-insensitive), `password_hash` (bcrypt), `role` (`parent`, `specialist`, or `child`).
+  - `children`: `id`, `parent_id` (FK -> `users`), `child_account_id` (unique FK -> `users`, optional), `name`, `birth_date`.
+  - `specialist_links`: `id`, `child_id` (FK -> `children`), `specialist_id` (FK -> `users`), `specialist_type`, `active` (`0` or `1`), `created_at`, `UNIQUE (child_id, specialist_id)`.
   - `tasks` (walking skeleton): `id`, `title`, `done` (`0` or `1`), `created_at`.
-- Seed the database with sample tasks and synthetic users (idempotent):
+- Seed the database with sample tasks, synthetic users, child profiles, and initial specialist links (idempotent):
   ```bash
   npm run seed
   ```
