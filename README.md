@@ -59,7 +59,7 @@ npm run dev
 ```
 
 - The backend API runs on `http://localhost:5000`.
-- `npm run seed` creates `./data/app.db` and populates the `tasks` table with sample data (skips automatically if data already exists).
+- `npm run seed` creates `./data/app.db` and adds the synthetic users, the sample child, specialist links and sample tasks (skips automatically if data already exists). The seed accounts are listed in [`server/README.md`](server/README.md); all use the password `password123`.
 - To run automated backend tests: `npm test` (or `npm run test:coverage`).
 
 ### 2. Frontend Setup (`client`)
@@ -76,14 +76,17 @@ npm run dev
 - Vite automatically proxies `/api/*` calls to the Express server on port 5000.
 - To run automated frontend tests: `npm test` (or `npm run lint` for Oxlint).
 
-### 3. Verification (Walking Skeleton v0.0)
+### 3. Verification
 
 Once both servers are running:
 
-1. Open `http://localhost:5173` in your browser. The page should load and display the sample tasks from the SQLite database with their status (`Done` or `To do`).
-2. You can also verify the backend API endpoints directly:
-   - `GET http://localhost:5000/api/health` — Health check endpoint (`{ "status": "ok", ... }`)
-   - `GET http://localhost:5000/api/tasks` — Returns sample tasks as JSON array
+1. Open `http://localhost:5173` in your browser and log in with a seed account, for example `ayse.demir@example.com` / `password123`. You are taken to the home page of your role.
+2. You can also verify the backend API directly:
+   - `GET http://localhost:5000/api/health` — Health check endpoint (`{ "status": "ok", ... }`), no token needed
+   - `POST http://localhost:5000/api/auth/login` with `{ "email": "...", "password": "password123" }` — Returns a JWT
+   - `GET http://localhost:5000/api/children/1/tasks` with the header `Authorization: Bearer <token>` — Returns the sample child's tasks
+
+The temporary walking-skeleton endpoint `GET /api/tasks` (v0.0) was removed in WEB-47 when the M4 task endpoints replaced it.
 
 
 ## Workflow

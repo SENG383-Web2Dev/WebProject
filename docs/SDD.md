@@ -44,7 +44,7 @@ Every request passes through the same layers, so access rules are checked in one
 
 ## 2. Module Design
 
-Paths are relative to `server/src/` and `client/src/`. Today the backend has only `app.js`, `db.js`, `seed.js` and `server.js`, and the frontend only the Vite starter files (`App.jsx`, `main.jsx`); the files named below are the planned structure. Shared parts used by every module: `middleware/auth.js` and `middleware/childAccess.js` on the backend, `api/client.js` (a `fetch` wrapper that adds the JWT) and `auth/AuthContext.jsx` (the logged-in user and role) on the frontend.
+Paths are relative to `server/src/` and `client/src/`. The files named below are the planned structure; modules are added sprint by sprint, so some of them do not exist yet. Shared parts used by every module: `middleware/auth.js` and `middleware/childAccess.js` on the backend, `api/client.js` (a `fetch` wrapper that adds the JWT) and `auth/AuthContext.jsx` (the logged-in user and role) on the frontend.
 
 | Module | Backend (Express) | Frontend (React) | Implements requirements |
 |---|---|---|---|
@@ -156,13 +156,13 @@ erDiagram
 
 **AI summaries are stored.** `POST /api/children/:childId/ai-summaries` calls the AI once and saves the result. `GET` returns the saved summary without a new AI call, so opening the dashboard again costs no extra API request. There is at most one summary per child, role and week (`UNIQUE (child_id, role, week_start)`); requesting a new one replaces it. A summary is not updated automatically when records change; the user requests a new one. `source_refs` keeps the type and id of each record the summary used (for example `[{"type":"task","id":12},{"type":"observation","id":4}]`), which the client turns into links (FR-M8-05).
 
-Note: The `tasks` table created in WEB-23 is a sample table to test the database setup. It will be replaced by the `TASK` entity above.
+Note: The `tasks` table created in WEB-23 was a sample table to test the database setup. WEB-47 replaced it with the `TASK` entity above.
 
 ---
 
 ## 4. API / Interfaces
 
-All endpoints except login and the health check require a valid JWT (FR-M1-04); the health check returns no user data. Access checks run in the backend for every request (NFR-02). Bodies are JSON, with camelCase field names in JSON and snake_case column names in the database. Errors return `{ "error": "message" }` with status 400 (invalid input), 401 (missing or invalid token), 403 (not allowed) or 404 (not found). A `week` value is the date of the Monday that starts the week, as `YYYY-MM-DD`. Only `GET /api/health` exists today (WEB-20); all other endpoints are planned.
+All endpoints except login and the health check require a valid JWT (FR-M1-04); the health check returns no user data. Access checks run in the backend for every request (NFR-02). Bodies are JSON, with camelCase field names in JSON and snake_case column names in the database. Errors return `{ "error": "message" }` with status 400 (invalid input), 401 (missing or invalid token), 403 (not allowed) or 404 (not found). A `week` value is the date of the Monday that starts the week, as `YYYY-MM-DD`. Endpoints are added module by module; `server/README.md` lists the ones that exist.
 
 **Walking skeleton (v0.0).** Before login and the `TASK` entity exist, a temporary `GET /api/tasks` (WEB-30) returns the sample tasks from the WEB-23 `tasks` table without a token, and the React task list (WEB-31) shows them. This proves that SQLite, Express and React work together end to end. The temporary endpoint is removed when `GET /api/children/:childId/tasks` is implemented.
 
@@ -382,3 +382,4 @@ The wireframes below show the main screens and which requirements each part cove
 | 2026-11-07 | Review fixes (PR #11): `CHILD.child_account_id` and its login relation, event times as datetimes, stored AI summaries (`AI_SUMMARY`), `GET /api/children`, `GET /api/auth/me`, tasks moved under `/api/children/:childId`, AI summary week sent in the request body; linked specialists see all of a child's tasks, as in the assignment's required scope (WEB-28) | Sude Naz Metli |
 | 2026-11-07 | Stage B: backend layers, module design, access rules, sequence diagrams for the 3 critical flows, screen wireframes; template notes removed (WEB-28) | Sude Naz Metli |
 | 2026-11-07 | Temporary walking-skeleton endpoint `GET /api/tasks` (WEB-30, WEB-31) described separately from the final task endpoint | Sude Naz Metli |
+| 2026-11-12 | Sample `tasks` table replaced by the `TASK` entity and the temporary `GET /api/tasks` removed (WEB-47); notes on existing endpoints and files updated | Sude Naz Metli |
