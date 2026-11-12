@@ -22,6 +22,14 @@ function mockMeForUser(user) {
         json: async () => ({ message: 'Logged out.' }),
       })
     }
+    if (url === '/api/children' || url === '/api/specialist/children') {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        headers: { get: () => 'application/json' },
+        json: async () => [],
+      })
+    }
     return Promise.resolve({
       ok: false,
       status: 404,

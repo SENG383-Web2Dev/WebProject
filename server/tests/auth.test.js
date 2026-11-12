@@ -37,9 +37,37 @@ describe('seedDatabase and POST /api/auth/login', () => {
       }
     });
 
+    it('seeds Deniz Demir child profile and initial active specialist links', () => {
+      const child = db.prepare('SELECT id, name, birth_date, parent_id, child_account_id FROM children').get();
+      expect(child).toMatchObject({
+        name: 'Deniz Demir',
+        birth_date: '2018-05-14',
+      });
+      expect(child.parent_id).toBeGreaterThan(0);
+      expect(child.child_account_id).toBeGreaterThan(0);
+
+      const links = db
+        .prepare(
+          `SELECT u.email, sl.specialist_type, sl.active
+           FROM specialist_links sl
+           JOIN users u ON u.id = sl.specialist_id
+           ORDER BY sl.id ASC`
+        )
+        .all();
+      expect(links).toEqual([
+        { email: 'mehmet.kaya@example.com', specialist_type: 'Teacher', active: 1 },
+        { email: 'zeynep.arslan@example.com', specialist_type: 'Psychologist', active: 1 },
+      ]);
+    });
+
     it('is idempotent when run more than once', async () => {
       const secondRun = await seedDatabase(db);
-      expect(secondRun).toEqual({ tasksInserted: 0, usersInserted: 0 });
+      expect(secondRun).toEqual({
+        tasksInserted: 0,
+        usersInserted: 0,
+        childrenInserted: 0,
+        linksInserted: 0,
+      });
     });
   });
 

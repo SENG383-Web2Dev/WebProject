@@ -23,10 +23,34 @@ export const SAMPLE_USERS = [
   { name: 'Deniz Demir', email: 'deniz.demir@example.com', role: 'child' },
 ];
 
+// Synthetic child profile linked to synthetic parent/child accounts
+export const SAMPLE_CHILDREN = [
+  {
+    name: 'Deniz Demir',
+    parentEmail: 'ayse.demir@example.com',
+    childEmail: 'deniz.demir@example.com',
+    birthDate: '2018-05-14',
+  },
+];
+
+// Initial active specialist links (leaves Selin Öz unlinked so parent can demo linking)
+export const SAMPLE_SPECIALIST_LINKS = [
+  {
+    childName: 'Deniz Demir',
+    specialistEmail: 'mehmet.kaya@example.com',
+    specialistType: 'Teacher',
+  },
+  {
+    childName: 'Deniz Demir',
+    specialistEmail: 'zeynep.arslan@example.com',
+    specialistType: 'Psychologist',
+  },
+];
+
 /**
- * Populate sample tasks and synthetic seed users (idempotent).
+ * Populate sample tasks, synthetic seed users, child profiles, and initial specialist links (idempotent).
  * @param {import('node:sqlite').DatabaseSync} db
- * @returns {Promise<{ tasksInserted: number, usersInserted: number }>}
+ * @returns {Promise<{ tasksInserted: number, usersInserted: number, childrenInserted: number, linksInserted: number }>}
  */
 export async function seedDatabase(db) {
   let tasksInserted = 0;
@@ -55,7 +79,47 @@ export async function seedDatabase(db) {
     }
   }
 
-  return { tasksInserted, usersInserted };
+  let childrenInserted = 0;
+  const findChild = db.prepare('SELECT id FROM children WHERE parent_id = ? AND name = ?');
+  const insertChild = db.prepare(
+    'INSERT INTO children (parent_id, child_account_id, name, birth_date) VALUES (?, ?, ?, ?)'
+  );
+
+  for (const child of SAMPLE_CHILDREN) {
+    const parent = findUser.get(child.parentEmail.trim().toLowerCase());
+    if (!parent) {
+      continue;
+    }
+
+    const existingChild = findChild.get(parent.id, child.name);
+    if (!existingChild) {
+      const childAccount = child.childEmail
+        ? findUser.get(child.childEmail.trim().toLowerCase())
+        : null;
+      insertChild.run(parent.id, childAccount ? childAccount.id : null, child.name, child.birthDate);
+      childrenInserted += 1;
+    }
+  }
+
+  let linksInserted = 0;
+  const { count: linkCount } = db.prepare('SELECT COUNT(*) AS count FROM specialist_links').get();
+  if (linkCount === 0) {
+    const findChildByName = db.prepare('SELECT id FROM children WHERE name = ?');
+    const insertLink = db.prepare(
+      'INSERT INTO specialist_links (child_id, specialist_id, specialist_type, active) VALUES (?, ?, ?, 1)'
+    );
+
+    for (const link of SAMPLE_SPECIALIST_LINKS) {
+      const childRow = findChildByName.get(link.childName);
+      const specialist = findUser.get(link.specialistEmail.trim().toLowerCase());
+      if (childRow && specialist) {
+        insertLink.run(childRow.id, specialist.id, link.specialistType);
+        linksInserted += 1;
+      }
+    }
+  }
+
+  return { tasksInserted, usersInserted, childrenInserted, linksInserted };
 }
 
 const isDirectRun =
@@ -64,7 +128,7 @@ const isDirectRun =
 if (isDirectRun) {
   const db = openDatabase();
   try {
-    const { tasksInserted, usersInserted } = await seedDatabase(db);
+    const { tasksInserted, usersInserted, childrenInserted, linksInserted } = await seedDatabase(db);
     console.log(
       tasksInserted > 0
         ? `Seeded ${tasksInserted} sample tasks.`
@@ -74,6 +138,16 @@ if (isDirectRun) {
       usersInserted > 0
         ? `Seeded ${usersInserted} synthetic users.`
         : 'Seed users already exist, skipping users seed.'
+    );
+    console.log(
+      childrenInserted > 0
+        ? `Seeded ${childrenInserted} synthetic children.`
+        : 'Seed children already exist, skipping children seed.'
+    );
+    console.log(
+      linksInserted > 0
+        ? `Seeded ${linksInserted} specialist links.`
+        : 'Specialist links already populated, skipping links seed.'
     );
   } finally {
     db.close();

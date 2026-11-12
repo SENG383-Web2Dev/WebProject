@@ -3,8 +3,11 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { getDatabase } from './db.js';
 import authRouter from './routes/auth.js';
+import childrenRouter from './routes/children.js';
+import specialistsRouter from './routes/specialists.js';
 import eventsRouter from './routes/events.js';
 import { requireAuth } from './middleware/auth.js';
+import { requireChildAccess } from './middleware/childAccess.js';
 
 const app = express();
 
@@ -45,6 +48,11 @@ app.use('/api/auth', authRouter);
 // Rate-limit and require a valid JWT on every other /api endpoint (FR-M1-04, NFR-02)
 app.use('/api', apiLimiter);
 app.use('/api', requireAuth);
+
+// M2: Child access guard (FR-M2-06) + children and specialist-linking routes
+app.use('/api/children/:childId', requireChildAccess('parent', 'specialist', 'child'));
+app.use('/api/children', childrenRouter);
+app.use('/api/specialist', specialistsRouter);
 
 // M3 Weekly schedule (WEB-44)
 app.use('/api', eventsRouter);
