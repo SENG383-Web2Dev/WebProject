@@ -113,6 +113,28 @@ describe('seedDatabase and POST /api/auth/login', () => {
       expect(verifyToken(response.body.token).role).toBe('child');
     });
 
+    it("returns the child's profile id on login, the same user object as /me (WEB-48)", async () => {
+      const profile = db.prepare('SELECT id FROM children WHERE name = ?').get('Deniz Demir');
+      const response = await request(app).post('/api/auth/login').send({
+        email: 'deniz.demir@example.com',
+        password: DEFAULT_SEED_PASSWORD,
+      });
+
+      expect(response.status).toBe(200);
+      expect(response.body.user.childProfileId).toBe(profile.id);
+
+      const meRes = await request(app)
+        .get('/api/auth/me')
+        .set('Authorization', `Bearer ${response.body.token}`);
+      expect(meRes.body).toEqual(response.body.user);
+
+      const parentRes = await request(app).post('/api/auth/login').send({
+        email: 'ayse.demir@example.com',
+        password: DEFAULT_SEED_PASSWORD,
+      });
+      expect(parentRes.body.user.childProfileId).toBeUndefined();
+    });
+
     it('handles trimmed and mixed-case email addresses', async () => {
       const response = await request(app).post('/api/auth/login').send({
         email: '  AYSE.DEMIR@example.com  ',

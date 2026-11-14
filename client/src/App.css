@@ -253,12 +253,24 @@
 }
 
 /* Kept for walking skeleton TaskList component until M4 replaces it */
-.app {
-  width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 32px 16px;
-  text-align: left;
+/* M4 Tasks (WEB-48) */
+.task-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-section > .btn-secondary {
+  align-self: flex-start;
+}
+
+/* On the specialist page the task list comes right after the weekly schedule */
+.weekly-schedule + .task-section {
+  margin-top: 16px;
+}
+
+.task-table td.task-nowrap {
+  white-space: nowrap;
 }
 
 .task-list {
@@ -281,10 +293,34 @@
   color: var(--text-h);
 }
 
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.task-title {
+  font-weight: 600;
+}
+
+.task-description {
+  display: block;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.task-meta {
+  font-size: 13px;
+  color: var(--text);
+}
+
 .task-status {
   flex-shrink: 0;
   font-size: 14px;
-  color: var(--text);
+  font-weight: 600;
+  color: #15803d;
 }
 
 .task-done .task-title {
@@ -292,8 +328,49 @@
   color: var(--text);
 }
 
-.task-done .task-status {
-  color: var(--accent);
+.task .btn-secondary {
+  flex-shrink: 0;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--topbar-bg);
+  color: var(--text-h);
+  border: 1px solid var(--border);
+}
+
+.status-done {
+  background: rgba(22, 163, 74, 0.14);
+  border-color: transparent;
+  color: #15803d;
+}
+
+.form-field textarea {
+  width: 100%;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--text-h);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.form-field textarea:focus {
+  outline: 2px solid var(--btn-primary-bg);
+  outline-offset: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .task-status,
+  .status-done {
+    color: #86efac;
+  }
 }
 
 /* M2 Specialist linking and children workspace */

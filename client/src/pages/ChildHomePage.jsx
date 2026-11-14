@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../auth/useAuth.js'
 import { fetchMeRequest } from '../api/client.js'
 import WeeklySchedule from '../components/WeeklySchedule.jsx'
+import TaskList from '../components/TaskList.jsx'
 
 /**
  * Child home screen displaying only the child's own tasks and weekly schedule (FR-M1-05, FR-M3-03).
@@ -68,8 +69,16 @@ function ChildHomePage() {
       </div>
 
       <div className="page-card">
-        <h2>My Tasks</h2>
-        <p className="card-text">Your assigned tasks will appear here.</p>
+        {loadingProfile ? (
+          <p className="card-text">Loading...</p>
+        ) : childProfileId ? (
+          <TaskList childId={childProfileId} canMarkDone title="My Tasks" />
+        ) : (
+          <>
+            <h2>My Tasks</h2>
+            <p className="card-text">Your tasks are not available yet.</p>
+          </>
+        )}
       </div>
     </section>
   )

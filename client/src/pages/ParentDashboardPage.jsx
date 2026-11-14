@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth.js'
 import { fetchParentChildrenRequest } from '../api/client.js'
 import WeeklySchedule from '../components/WeeklySchedule.jsx'
+import TaskList from '../components/TaskList.jsx'
 
 /**
  * Parent home workspace showing child schedule, tasks, observations, and specialist link shortcut.
@@ -91,11 +92,13 @@ function ParentDashboardPage() {
         )}
       </div>
 
-      <div className="card-grid">
+      {!loadingChildren && selectedChildId && (
         <div className="page-card">
-          <h2>Tasks</h2>
-          <p className="card-text">Assign daily tasks and follow completion status.</p>
+          <TaskList key={selectedChildId} childId={selectedChildId} canAssign />
         </div>
+      )}
+
+      <div className="card-grid">
         <div className="page-card">
           <h2>Linked Specialists</h2>
           <p className="card-text">

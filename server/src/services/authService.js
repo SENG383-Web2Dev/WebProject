@@ -85,7 +85,7 @@ export async function loginUser(email, password) {
 
   return {
     token: signToken(publicUser),
-    user: publicUser,
+    user: withChildProfileId(db, publicUser),
   };
 }
 
@@ -104,14 +104,23 @@ export function getCurrentUser(userId) {
     throw new HttpError(404, 'User not found.');
   }
 
-  // A child account also gets its own child profile id, so the client can load its schedule (SDD section 4)
+  return withChildProfileId(db, user);
+}
+
+/**
+ * A child account also gets its own child profile id, so the client can load its schedule and tasks
+ * (SDD section 4). Login and GET /api/auth/me both use this, so they return the same user object.
+ * @param {import('node:sqlite').DatabaseSync} db
+ * @param {{ id: number, name: string, email: string, role: string }} user
+ * @returns {{ id: number, name: string, email: string, role: string, childProfileId?: number }}
+ */
+function withChildProfileId(db, user) {
   if (user.role === 'child') {
     const profile = db.prepare('SELECT id FROM children WHERE child_account_id = ?').get(user.id);
     if (profile) {
       return { ...user, childProfileId: profile.id };
     }
   }
-
   return user;
 }
 

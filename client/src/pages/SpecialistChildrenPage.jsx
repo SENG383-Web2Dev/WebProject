@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../auth/useAuth.js'
 import { fetchChildProfileRequest, fetchSpecialistChildrenRequest } from '../api/client.js'
 import WeeklySchedule from '../components/WeeklySchedule.jsx'
+import TaskList from '../components/TaskList.jsx'
 
 /**
  * Specialist home workspace displaying the children actively linked to this specialist (FR-M2-05, FR-M2-06).
@@ -167,9 +168,8 @@ function SpecialistChildrenPage() {
                   currentUserId={user?.id}
                   canEdit
                 />
-                <p className="card-text">
-                  Tasks, observations, and documents for this child will appear here.
-                </p>
+                <TaskList key={`tasks-${selectedSummary.id}`} childId={selectedSummary.id} canAssign />
+                <p className="card-text">Observations and documents for this child will appear here.</p>
               </>
             ) : null}
           </div>

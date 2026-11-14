@@ -152,3 +152,21 @@ export function updateEventRequest(eventId, { title, startTime, endTime }) {
 export function deleteEventRequest(eventId) {
   return apiFetch(`/api/events/${eventId}`, { method: 'DELETE' })
 }
+
+// M4 Tasks (WEB-48). Same fixed list as DEVELOPMENT_AREAS in server/src/services/taskService.js (FR-M4-06)
+export const DEVELOPMENT_AREAS = ['Language', 'Motor', 'Social-emotional', 'Cognitive', 'Self-care']
+
+export function fetchChildTasksRequest(childId) {
+  return apiFetch(`/api/children/${childId}/tasks`)
+}
+
+export function createTaskRequest(childId, { title, description, developmentArea, dueDate }) {
+  return apiFetch(`/api/children/${childId}/tasks`, {
+    method: 'POST',
+    body: { title, description, developmentArea, dueDate },
+  })
+}
+
+export function markTaskDoneRequest(taskId) {
+  return apiFetch(`/api/tasks/${taskId}/done`, { method: 'PATCH' })
+}
