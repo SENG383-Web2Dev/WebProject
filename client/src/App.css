@@ -524,3 +524,131 @@
   font-size: 12px;
   font-weight: 600;
 }
+
+/* M3 Weekly schedule (WEB-45) */
+.weekly-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.week-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.week-range {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.weekly-schedule > .btn-secondary {
+  align-self: flex-start;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .week-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}
+
+.week-day {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  overflow-wrap: anywhere;
+  background: var(--input-bg);
+  min-height: 90px;
+}
+
+.week-day-title {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.week-day-empty {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.event-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: var(--surface);
+  border-left: 3px solid var(--btn-primary-bg);
+  font-size: 13px;
+}
+
+.event-time {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.event-title {
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.link-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--btn-primary-bg);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg);
+}
+
+.event-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.event-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.event-form-actions .btn-primary {
+  width: auto;
+}

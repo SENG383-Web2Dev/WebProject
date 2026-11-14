@@ -129,3 +129,26 @@ export function unlinkSpecialistRequest(childId, specialistId) {
 export function fetchSpecialistChildrenRequest() {
   return apiFetch('/api/specialist/children')
 }
+
+// M3 Weekly schedule (WEB-45)
+export function fetchChildEventsRequest(childId, week) {
+  return apiFetch(`/api/children/${childId}/events?week=${encodeURIComponent(week)}`)
+}
+
+export function createEventRequest(childId, { title, startTime, endTime }) {
+  return apiFetch(`/api/children/${childId}/events`, {
+    method: 'POST',
+    body: { title, startTime, endTime },
+  })
+}
+
+export function updateEventRequest(eventId, { title, startTime, endTime }) {
+  return apiFetch(`/api/events/${eventId}`, {
+    method: 'PUT',
+    body: { title, startTime, endTime },
+  })
+}
+
+export function deleteEventRequest(eventId) {
+  return apiFetch(`/api/events/${eventId}`, { method: 'DELETE' })
+}
