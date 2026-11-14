@@ -31,6 +31,7 @@ A web-based decision support platform that brings parents, specialists and the c
 WebProject/
 ├── client/              React (Vite) frontend
 ├── server/              Node.js + Express backend, SQLite
+├── e2e/                 Playwright end-to-end tests (API + client together)
 ├── docs/
 │   ├── PMP.md           Project Management Plan
 │   ├── SRS.md           Software Requirements Specification
@@ -88,6 +89,21 @@ Once both servers are running:
    - `GET http://localhost:5000/api/children/1/tasks` with the header `Authorization: Bearer <token>` — Returns the sample child's tasks
 
 The temporary walking-skeleton endpoint `GET /api/tasks` (v0.0) was removed in WEB-47 when the M4 task endpoints replaced it.
+
+### 4. End-to-End Tests (`e2e`)
+
+The Playwright tests open the real app in Chromium: login for each role and the task list. Install the `server` and `client` dependencies first (steps 1 and 2), stop your own dev servers on ports 5000 and 5173, then run:
+
+```bash
+cd e2e
+npm install
+npx playwright install chromium   # first time only, downloads the browser
+npm test
+```
+
+- Playwright starts the API on port 5000 with a fresh seeded database (`server/data/e2e.db`, not committed) and the client on port 5173, and stops both at the end.
+- `npm run test:headed` shows the browser while the tests run.
+- The same tests run in GitHub Actions on every pull request (job "E2E (Playwright)"); when they fail, the HTML report is attached to the run as the `playwright-report` artifact.
 
 
 ## Workflow
