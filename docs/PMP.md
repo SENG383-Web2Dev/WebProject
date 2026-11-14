@@ -82,10 +82,10 @@ Other epics: SETUP (infrastructure, CI, E2E and coverage tasks, Sprints 1–4), 
 | M5 – M8 | Planned for Sprint 3 (only the M8 AI provider decision was planned for Sprint 1 and is done) | Not started |
 
 **Changes to the plan (if any):**  
-- M3 work started after the M1 and M2 pull requests were merged, because the events API uses the same login and child access checks. This shifted the M3 schedule screen to the second half of Week 7, still inside Sprint 2.
+- The events API (WEB-44) was written early, but it could only be merged after M1 and M2, because it uses the same login and child access checks. This moved the M3 schedule screen to the second half of Week 7, still inside Sprint 2.
 - The sample `tasks` table and `GET /api/tasks` endpoint from the walking skeleton were replaced by the M4 tasks API (WEB-47), as planned in the SDD.
-- To show the weekly schedule on the child's screen, `GET /api/auth/me` now returns the child's profile id (`childProfileId`) (WEB-45). The same field will be added to the login response in WEB-48.
-- No changes to sprints or epic owners. The remaining Sprint 2 work (WEB-45, WEB-48, WEB-49, WEB-50 and the v0.1 release WEB-51) is still planned to finish by 22 November.
+- WEB-45 (in review) adds the child's profile id (`childProfileId`) to the `GET /api/auth/me` response, so the weekly schedule can be shown on the child's screen. 
+- No changes to sprints or epic owners. The remaining Sprint 2 work (WEB-45, WEB-48, WEB-49, WEB-50, PMP-4 (WEB-70) and the v0.1 release WEB-51) is still planned to finish by 22 November.
 ---
 
 ## PMP-4. Progress Review: v0.2
