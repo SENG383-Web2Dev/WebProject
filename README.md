@@ -81,6 +81,7 @@ npm run dev
 Once both servers are running:
 
 1. Open `http://localhost:5173` in your browser and log in with a seed account, for example `ayse.demir@example.com` / `password123`. You are taken to the home page of your role.
+   - To try the task flow (Flow 1): log in as the specialist `mehmet.kaya@example.com` and assign a task to Deniz Demir, then log in as the child `deniz.demir@example.com` and mark it as done under "My Tasks". The parent and the specialist now see its status as Done.
 2. You can also verify the backend API directly:
    - `GET http://localhost:5000/api/health` — Health check endpoint (`{ "status": "ok", ... }`), no token needed
    - `POST http://localhost:5000/api/auth/login` with `{ "email": "...", "password": "password123" }` — Returns a JWT

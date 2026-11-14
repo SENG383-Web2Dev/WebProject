@@ -57,7 +57,7 @@ Paths are relative to `server/src/` and `client/src/`. The files named below are
 | M7 Weekly statistics | `routes/stats.js`, `services/statsService.js` (done tasks / tasks due in the week, in total and by area) | `components/WeeklyStats.jsx` | FR-M7-01 to FR-M7-04 |
 | M8 Role-based AI summary | `routes/aiSummaries.js`, `services/summaryService.js` (collects the records the user may see, builds the parent or specialist prompt), `prompts/parentPrompt.js`, `prompts/specialistPrompt.js`, `services/aiService.js` | `components/AiSummaryCard.jsx` | FR-M8-01 to FR-M8-08 |
 
-The pages combine these components by role: `ParentDashboardPage.jsx` shows M3, M4, M5, M7 and M8 for the selected child, `SpecialistChildPage.jsx` shows the same child's records for a linked specialist, and `ChildHomePage.jsx` shows only the child's own tasks and schedule (FR-M1-05).
+The pages combine these components by role: `ParentDashboardPage.jsx` shows M3, M4, M5, M7 and M8 for the selected child, `SpecialistChildrenPage.jsx` shows the same child's records for a linked specialist, and `ChildHomePage.jsx` shows only the child's own tasks and schedule (FR-M1-05).
 
 ---
 
@@ -168,7 +168,7 @@ All endpoints except login and the health check require a valid JWT (FR-M1-04); 
 
 | Method | Endpoint | Description | Module |
 |---|---|---|---|
-| POST | `/api/auth/login` | Log in with email and password; returns a JWT and the user's role, which comes from the account (FR-M1-01 to FR-M1-04) | M1 |
+| POST | `/api/auth/login` | Log in with email and password; returns a JWT and the user's role, which comes from the account (FR-M1-01 to FR-M1-04). For a child account the user also has its child profile id, the same as `GET /api/auth/me` | M1 |
 | GET | `/api/auth/me` | The logged-in user's id, name, email and role; for a child account also its child profile id. The client calls it after a page refresh to restore the user and role (FR-M1-05) | M1 |
 | POST | `/api/auth/logout` | Log out; the client deletes its stored token (FR-M1-06, Should) | M1 |
 | GET | `/api/health` | Health check; implemented in WEB-20 | — |
@@ -383,3 +383,4 @@ The wireframes below show the main screens and which requirements each part cove
 | 2026-11-07 | Stage B: backend layers, module design, access rules, sequence diagrams for the 3 critical flows, screen wireframes; template notes removed (WEB-28) | Sude Naz Metli |
 | 2026-11-07 | Temporary walking-skeleton endpoint `GET /api/tasks` (WEB-30, WEB-31) described separately from the final task endpoint | Sude Naz Metli |
 | 2026-11-12 | Sample `tasks` table replaced by the `TASK` entity and the temporary `GET /api/tasks` removed (WEB-47); notes on existing endpoints and files updated | Sude Naz Metli |
+| 2026-11-14 | Login also returns the child profile id for a child account; specialist page name corrected to `SpecialistChildrenPage.jsx` (WEB-48) | Sude Naz Metli |

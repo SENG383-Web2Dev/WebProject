@@ -5,8 +5,8 @@ Node.js + Express backend with SQLite.
 ## Endpoints
 
 - `GET /api/health` – Health check endpoint returning `{ status: "ok", uptime, timestamp }`.
-- `POST /api/auth/login` – Authenticate with `{ email, password }`; returns `{ token, user: { id, name, email, role } }` or `401`/`400` `{ error }`.
-- `GET /api/auth/me` – Protected (`Bearer <token>`); returns the logged-in user's profile `{ id, name, email, role }`.
+- `POST /api/auth/login` – Authenticate with `{ email, password }`; returns `{ token, user: { id, name, email, role } }` or `401`/`400` `{ error }`. For a child account `user` also has `childProfileId`.
+- `GET /api/auth/me` – Protected (`Bearer <token>`); returns the logged-in user's profile `{ id, name, email, role }` (plus `childProfileId` for a child account), the same object as the login `user`.
 - `POST /api/auth/logout` – Protected (`Bearer <token>`); returns `{ message: "Logged out." }`.
 - `GET /api/children` – Protected (`parent`); returns child profiles owned by the logged-in parent.
 - `GET /api/children/:childId` – Protected (`requireChildAccess`: owning parent, actively linked specialist, or the child's own account); returns the child profile (`403` otherwise, `FR-M2-06`).
