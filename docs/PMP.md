@@ -65,18 +65,27 @@ Other epics: SETUP (infrastructure, CI, E2E and coverage tasks, Sprints 1–4), 
 | Sprint 4 | Weeks 11–12 (7 – 20 Dec) | An E2E test for each of M1–M8; branch coverage ≥60%; PMP-6; final report, final peer review, presentation and live demo | Release v1.0, final |
 
 ---
-
 ## PMP-3. Progress Review: Mid-term (v0.1)
 
+**Review date:** 14 November 2026 (end of Week 7, middle of Sprint 2)
+
 **Jira board screenshot:**  
+![Jira board, Sprint 2, 14 November 2026](img/pmp3-board.png)
 
 | Epic | Planned for this point | Status (Done / In progress / Not started) |
 |---|---|---|
-| | | |
-| | | |
+| M1 – Login and roles | Login with JWT, role guard, login page and role-based routing, API tests (WEB-36 – WEB-39) | Done |
+| M2 – Linking specialists | Link / unlink / list API, 403 for unlinked specialists, linking screens, API tests (WEB-40 – WEB-43) | Done |
+| M3 – Weekly schedule | Events API (WEB-44), weekly schedule screen (WEB-45), API tests (WEB-46) | In progress (API and tests merged; schedule screen in review) |
+| M4 – Tasks | Tasks API (WEB-47), task screens (WEB-48), API and component tests (WEB-49) | In progress (API merged; screens and tests not started) |
+| SETUP – E2E | Playwright set up and first E2E test in CI (WEB-50) | Not started |
+| M5 – M8 | Planned for Sprint 3 (only the M8 AI provider decision was planned for Sprint 1 and is done) | Not started |
 
-**Changes to the plan (if any):**
-
+**Changes to the plan (if any):**  
+- M3 work started after the M1 and M2 pull requests were merged, because the events API uses the same login and child access checks. This shifted the M3 schedule screen to the second half of Week 7, still inside Sprint 2.
+- The sample `tasks` table and `GET /api/tasks` endpoint from the walking skeleton were replaced by the M4 tasks API (WEB-47), as planned in the SDD.
+- To show the weekly schedule on the child's screen, `GET /api/auth/me` now returns the child's profile id (`childProfileId`) (WEB-45). The same field will be added to the login response in WEB-48.
+- No changes to sprints or epic owners. The remaining Sprint 2 work (WEB-45, WEB-48, WEB-49, WEB-50 and the v0.1 release WEB-51) is still planned to finish by 22 November.
 ---
 
 ## PMP-4. Progress Review: v0.2
