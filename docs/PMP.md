@@ -67,25 +67,28 @@ Other epics: SETUP (infrastructure, CI, E2E and coverage tasks, Sprints 1–4), 
 ---
 ## PMP-3. Progress Review: Mid-term (v0.1)
 
-**Review date:** 14 November 2026 (end of Week 7, middle of Sprint 2)
+**Review date:** 21 November 2026 (end of Sprint 2, release v0.1)  
+The first version of this review was written on 14 November, in the middle of the sprint. It was updated at the end of the sprint.
 
 **Jira board screenshot:**  
-![Jira board, Sprint 2, 14 November 2026](img/pmp3-board.png)
+![Jira board, end of Sprint 2, 21 November 2026](img/pmp3-board.png)
 
 | Epic | Planned for this point | Status (Done / In progress / Not started) |
 |---|---|---|
 | M1 – Login and roles | Login with JWT, role guard, login page and role-based routing, API tests (WEB-36 – WEB-39) | Done |
 | M2 – Linking specialists | Link / unlink / list API, 403 for unlinked specialists, linking screens, API tests (WEB-40 – WEB-43) | Done |
-| M3 – Weekly schedule | Events API (WEB-44), weekly schedule screen (WEB-45), API tests (WEB-46) | In progress (API and tests merged; schedule screen in review) |
-| M4 – Tasks | Tasks API (WEB-47), task screens (WEB-48), API and component tests (WEB-49) | In progress (API merged; screens and tests not started) |
-| SETUP – E2E | Playwright set up and first E2E test in CI (WEB-50) | Not started |
+| M3 – Weekly schedule | Events API (WEB-44), weekly schedule screen (WEB-45), API tests (WEB-46) | Done |
+| M4 – Tasks | Tasks API (WEB-47), task screens (WEB-48), API and component tests (WEB-49) | Done |
+| SETUP – E2E | Playwright set up and first E2E tests in CI (WEB-50) | Done |
+| Release v0.1 | M1–M4 released for the mid-term demo (WEB-51) | Done |
 | M5 – M8 | Planned for Sprint 3 (only the M8 AI provider decision was planned for Sprint 1 and is done) | Not started |
 
 **Changes to the plan (if any):**  
 - The events API (WEB-44) was written early, but it could only be merged after M1 and M2, because it uses the same login and child access checks. This moved the M3 schedule screen to the second half of Week 7, still inside Sprint 2.
 - The sample `tasks` table and `GET /api/tasks` endpoint from the walking skeleton were replaced by the M4 tasks API (WEB-47), as planned in the SDD.
-- WEB-45 (in review) adds the child's profile id (`childProfileId`) to the `GET /api/auth/me` response, so the weekly schedule can be shown on the child's screen. 
-- No changes to sprints or epic owners. The remaining Sprint 2 work (WEB-45, WEB-48, WEB-49, WEB-50, PMP-4 (WEB-70) and the v0.1 release WEB-51) is still planned to finish by 22 November.
+- For a child account, `GET /api/auth/me` (WEB-45) and the login response (WEB-48) also return the child's profile id (`childProfileId`), so the child's screen can show its own schedule and tasks.
+- PMP-4 (WEB-70) was moved from Sprint 2 to Sprint 3, because it is the progress review of v0.2, which is released at the end of Sprint 3 (Week 10).
+- No other changes to sprints or epic owners. All other Sprint 2 work was finished by the end of the sprint.
 ---
 
 ## PMP-4. Progress Review: v0.2
